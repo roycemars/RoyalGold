@@ -179,8 +179,6 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
                     letterSpacing = 0.5.sp
                 )
             }
-            // Add Tabs and Legend below if needed
-            // ... (Implementation for "HEAD CATEGORIES", "CATEGORIES" tabs and the list)
         }
     }
 }
