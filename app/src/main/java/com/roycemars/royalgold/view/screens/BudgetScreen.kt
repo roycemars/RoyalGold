@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.roycemars.royalgold.view.views.BarChart
-import com.roycemars.royalgold.view.views.PieChart
+import com.roycemars.royalgold.view.views.charts.BarChart
+import com.roycemars.royalgold.view.views.charts.PieChart
 
 @Composable
 fun BudgetScreen() {

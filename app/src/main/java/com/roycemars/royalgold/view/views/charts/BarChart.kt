@@ -1,5 +1,6 @@
-package com.roycemars.royalgold.view.views // Or your actual package
+package com.roycemars.royalgold.view.views.charts // Or your actual package
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.isSystemInDarkTheme // Needed if you want to check system theme directly
 import androidx.compose.foundation.layout.*
@@ -180,7 +181,7 @@ fun BarChart(darkTheme: Boolean = isSystemInDarkTheme()) { // Pass darkTheme to 
     )
 }
 
-@Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun BarChartPreviewLight() {
     RoyalGoldTheme(darkTheme = false) { // Explicitly set light theme
@@ -188,7 +189,7 @@ fun BarChartPreviewLight() {
     }
 }
 
-@Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BarChartPreviewDark() {
     RoyalGoldTheme(darkTheme = true) { // Explicitly set dark theme

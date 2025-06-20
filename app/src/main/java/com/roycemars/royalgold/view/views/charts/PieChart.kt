@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.view.views
+package com.roycemars.royalgold.view.views.charts
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
