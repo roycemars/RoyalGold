@@ -57,6 +57,7 @@ class AiReceiptScanner {
             ))
         }
 
+//        TODO: fix googleapis request
 //        val response = post("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=$apiKey", payload)
 
         val requestPayload = GeminiRequest(
