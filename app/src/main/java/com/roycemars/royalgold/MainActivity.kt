@@ -30,7 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.roycemars.royalgold.ui.screens.BudgetScreen
-import com.roycemars.royalgold.ui.screens.HomeScreen
+import com.roycemars.royalgold.ui.screens.ScanScreen
 import com.roycemars.royalgold.ui.screens.NewsScreen
 import com.roycemars.royalgold.ui.screens.SettingsScreen
 import com.roycemars.royalgold.ui.screens.WalletScreen
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainApp() {
     val navController = rememberNavController()
-    var currentScreenTitle by remember { mutableStateOf(Screen.Home.title) }
+    var currentScreenTitle by remember { mutableStateOf(Screen.Scan.title) }
 
     Scaffold(
         topBar = {
@@ -116,10 +116,10 @@ fun MainApp() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route, // Your initial screen
+            startDestination = Screen.Scan.route, // Your initial screen
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Home.route) { HomeScreen() }
+            composable(Screen.Scan.route) { ScanScreen() }
             composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
             composable(Screen.Wallet.route) { WalletScreen() }
             composable(Screen.News.route) { NewsScreen() }

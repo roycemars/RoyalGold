@@ -1,11 +1,13 @@
 package com.roycemars.royalgold.ui.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.DonutLarge
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Newspaper
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Wallet
+import androidx.compose.material.icons.outlined.Camera
 import androidx.compose.material.icons.outlined.DonutLarge
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Newspaper
@@ -19,11 +21,11 @@ sealed class Screen(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 ) {
-    data object Home : Screen(
-        route = "home",
-        title = "Home",
-        selectedIcon = Icons.Filled.Home,
-        unselectedIcon = Icons.Outlined.Home
+    data object Scan : Screen(
+        route = "scan",
+        title = "Scan",
+        selectedIcon = Icons.Filled.Camera,
+        unselectedIcon = Icons.Outlined.Camera
     )
     data object Budget : Screen(
         route = "budget",
@@ -52,9 +54,9 @@ sealed class Screen(
 }
 
 val bottomNavItems = listOf(
-    Screen.Home,
-    Screen.Budget,
     Screen.Wallet,
+    Screen.Budget,
+    Screen.Scan,
     Screen.News,
     Screen.Settings
 )
