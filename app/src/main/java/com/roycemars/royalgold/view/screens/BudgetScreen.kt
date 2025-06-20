@@ -1,5 +1,6 @@
 package com.roycemars.royalgold.view.screens // Adjust package name
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,11 +12,13 @@ import com.roycemars.royalgold.view.views.PieChart
 
 @Composable
 fun BudgetScreen() {
+    val systemIsDark = isSystemInDarkTheme()
+
         Box(modifier = Modifier
             .fillMaxSize(), contentAlignment = Alignment.Center) {
             Column {
                 PieChart()
-                BarChart()
+                BarChart(darkTheme = systemIsDark)
             }
         }
 }

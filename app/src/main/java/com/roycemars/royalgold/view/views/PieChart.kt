@@ -111,14 +111,13 @@ fun PieChart(modifier: Modifier = Modifier) {
     val totalExpenses = segments.sumOf { it.value.toDouble() }.toFloat()
     // Find the segment with the highest value for the center display
     val largestSegment = segments.maxByOrNull { it.value } ?: segments.first()
+    val cardBackgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface // USE THEME COLOR
-        ),
+        colors = CardDefaults.cardColors(containerColor = cardBackgroundColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

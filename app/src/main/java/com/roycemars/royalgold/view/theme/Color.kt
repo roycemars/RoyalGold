@@ -27,3 +27,6 @@ val OnDarkSurfaceVariant = Color(0xFF90A4AE) // For less prominent elements, lik
 // You can also define your other segment colors here if you plan to use them thematically
 val BlueAccent = Color(0xFF64B5F6)
 val PinkAccent = Color(0xFFF06292)
+
+val LightBlueGridLine = Color(0xFFADD8E6) // A standard light blue
+val ChartLightBackground = Color.White

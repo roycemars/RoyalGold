@@ -1,8 +1,8 @@
-package com.roycemars.royalgold.view.views
+package com.roycemars.royalgold.view.views // Or your actual package
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.isSystemInDarkTheme // Needed if you want to check system theme directly
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -16,6 +16,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
+// import androidx.compose.ui.graphics.luminance // Alternative way to check brightness
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,8 +24,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.roycemars.royalgold.view.theme.RoyalGoldTheme
+// Import your new colors if defined in Color.kt
+import com.roycemars.royalgold.view.theme.LightBlueGridLine
+import com.roycemars.royalgold.view.theme.ChartLightBackground
 
-// Data class to hold information for each bar
 data class BarData(
     val value: Float,
     val label: String,
@@ -36,41 +39,62 @@ data class BarData(
 fun BarChart(
     modifier: Modifier = Modifier,
     barDataList: List<BarData>,
-    maxBarValue: Float, // The maximum value any bar can represent for scaling
-    cardColor: Color = Color(0xFF2C333A), // Dark background color from image
-    gridLineColor: Color = Color.Gray.copy(alpha = 0.3f),
-    labelTextColor: Color = Color.White,
-    amountTextColor: Color = Color.White,
+    maxBarValue: Float,
     barCornerRadius: Dp = 12.dp,
-    barWidthFraction: Float = 0.6f, // How much of the available space each bar takes
+    barWidthFraction: Float = 0.6f,
     chartHeight: Dp = 150.dp,
-    gridLineCount: Int = 5
+    gridLineCount: Int = 5,
+    // explicitly pass darkTheme, so the chart knows how to style itself
+    // according to the theme it's currently in.
+    darkTheme: Boolean = isSystemInDarkTheme()
 ) {
+    // Determine colors based on the theme (light/dark)
+    val cardBackgroundColor: Color
+    val contentColor: Color
+    val gridLineColorForChart: Color
+    val labelTextColor: Color
+    val amountTextColor: Color
+
+    if (darkTheme) {
+        // Dark theme colors (as previously defined or from MaterialTheme)
+        cardBackgroundColor = MaterialTheme.colorScheme.surfaceVariant
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        gridLineColorForChart = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+        labelTextColor = contentColor
+        amountTextColor = contentColor
+    } else {
+        // Light theme specific colors for the chart
+        cardBackgroundColor = ChartLightBackground // White background for the card
+        contentColor = MaterialTheme.colorScheme.onBackground // Text on white
+        gridLineColorForChart = LightBlueGridLine    // Light blue grid lines
+        labelTextColor = contentColor // Or a specific color like Color.Black
+        amountTextColor = contentColor // Or a specific color like Color.Black
+    }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = cardColor)
+        colors = CardDefaults.cardColors(containerColor = cardBackgroundColor),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {
-            // Chart Area
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(chartHeight)
             ) {
-                // Background Grid Lines
                 Canvas(modifier = Modifier.fillMaxSize()) {
                     val pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
                     val stepSize = size.height / (gridLineCount + 1)
                     for (i in 1..gridLineCount) {
                         drawLine(
-                            color = gridLineColor,
+                            color = gridLineColorForChart, // Use the determined grid line color
                             start = Offset(0f, stepSize * i),
                             end = Offset(size.width, stepSize * i),
                             strokeWidth = 1.dp.toPx(),
@@ -79,35 +103,31 @@ fun BarChart(
                     }
                 }
 
-                // Bars
                 Row(
                     modifier = Modifier.fillMaxSize(),
                     horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.Bottom // Align bars to the bottom
+                    verticalAlignment = Alignment.Bottom
                 ) {
-//                    val barSlotWidth = size.width / barDataList.size
-//                    val actualBarWidth = barSlotWidth * barWidthFraction
-
                     barDataList.forEach { data ->
-//                        val barHeight = (data.value / maxBarValue) * chartHeight.toPx()
-                        Canvas(
-                            modifier = Modifier.fillMaxSize() // Convert Px to Dp for Modifier
-                                .height(chartHeight) // Canvas takes full chart height
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxHeight()
                         ) {
-                            // 'size' here is the size of this specific Canvas.
-                            val canvasWidth = size.width
-                            val actualBarDrawingWidth = canvasWidth * barWidthFraction
-                            val barHeightPx = (data.value / maxBarValue) * size.height // Use Canvas's height
-
-                            drawRoundRect(
-                                color = data.color,
-                                topLeft = Offset(
-                                    x = (size.width - actualBarDrawingWidth) / 2, // Center the bar
-                                    y = size.height - barHeightPx // Draw from bottom up
-                                ),
-                                size = Size(actualBarDrawingWidth, barHeightPx),
-                                cornerRadius = CornerRadius(barCornerRadius.toPx())
-                            )
+                            Canvas(modifier = Modifier.fillMaxSize()) {
+                                val canvasWidth = size.width
+                                val actualBarDrawingWidth = canvasWidth * barWidthFraction
+                                val barHeightPx = (data.value / maxBarValue).coerceAtMost(1f) * size.height
+                                drawRoundRect(
+                                    color = data.color,
+                                    topLeft = Offset(
+                                        x = (canvasWidth - actualBarDrawingWidth) / 2,
+                                        y = size.height - barHeightPx
+                                    ),
+                                    size = Size(actualBarDrawingWidth, barHeightPx),
+                                    cornerRadius = CornerRadius(barCornerRadius.toPx())
+                                )
+                            }
                         }
                     }
                 }
@@ -115,7 +135,6 @@ fun BarChart(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Labels and Amounts
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
@@ -123,21 +142,23 @@ fun BarChart(
                 barDataList.forEach { data ->
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.weight(1f) // Distribute space equally
+                        modifier = Modifier.weight(1f)
                     ) {
                         Text(
                             text = data.amountText,
                             color = amountTextColor,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.titleMedium
                         )
                         Text(
                             text = data.label.uppercase(),
-                            color = labelTextColor.copy(alpha = 0.7f), // Slightly dimmer label
+                            color = labelTextColor.copy(alpha = 0.7f),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Medium,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.labelSmall
                         )
                     }
                 }
@@ -147,36 +168,32 @@ fun BarChart(
 }
 
 @Composable
-fun BarChart() {
+fun BarChart(darkTheme: Boolean) { // Pass darkTheme to the sample
     val sampleData = listOf(
-        BarData(
-            value = 4593f,
-            label = "INCOME",
-            amountText = "$4,593",
-            color = Color(0xFF49C6B2) // Teal
-        ),
-        BarData(
-            value = 4466f,
-            label = "EXPENSES",
-            amountText = "$4,466",
-            color = Color(0xFFF789BA) // Pink
-        ),
-        BarData(
-            value = 127f,
-            label = "LEFT",
-            amountText = "$127",
-            color = Color(0xFFAC6FF1) // Purple
-        )
+        BarData(4593f, "INCOME", "$4,593", Color(0xFF49C6B2)),
+        BarData(4466f, "EXPENSES", "$4,466", Color(0xFFF789BA)),
+        BarData(127f, "LEFT", "$127", Color(0xFFAC6FF1))
     )
-    val maxVal = sampleData.maxOfOrNull { it.value } ?: 5000f // Determine max for scaling
-
-    BarChart(barDataList = sampleData, maxBarValue = maxVal)
+    val maxVal = (sampleData.maxOfOrNull { it.value } ?: 1f) * 1.1f
+    BarChart(
+        barDataList = sampleData,
+        maxBarValue = maxVal.coerceAtLeast(1f),
+        darkTheme = darkTheme // Pass the theme state
+    )
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF1E1E1E)
+@Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_NO)
 @Composable
-fun BarChartPreview() {
-    RoyalGoldTheme(darkTheme = true) {
-        BarChart()
+fun BarChartPreviewLight() {
+    RoyalGoldTheme(darkTheme = false) { // Explicitly set light theme
+        BarChart(darkTheme = false)
+    }
+}
+
+@Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun BarChartPreviewDark() {
+    RoyalGoldTheme(darkTheme = true) { // Explicitly set dark theme
+        BarChart(darkTheme = true)
     }
 }

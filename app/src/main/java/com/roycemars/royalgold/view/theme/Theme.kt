@@ -1,34 +1,43 @@
-package com.roycemars.royalgold.view.theme // Adjust package name
+package com.roycemars.royalgold.view.theme // Adjust package name if different
 
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ColorScheme // Ensure this is imported
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme // Keep light scheme if you want to support both
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color // Keep this for your custom color definitions
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Define your Dark Color Scheme
-private val DarkColorScheme = darkColorScheme(
+// Assuming these colors are defined in your com.roycemars.royalgold.view.theme.Color.kt
+// If not, define them here or ensure Color.kt is in the correct package.
+// Example:
+// val OrangePrimary = Color(0xFFFFA500)
+// val OnDarkPrimary = Color(0xFFFFFFFF)
+// ... and so on for all custom colors used below
+
+// Define your Dark Color Scheme using your custom colors
+// For any parameter not specified, darkColorScheme provides a default Material 3 dark value.
+private val AppDarkColorScheme = darkColorScheme(
     primary = OrangePrimary,
-    onPrimary = Color.Black, // Text/icon color on top of primary color (e.g., on a bright orange button)
-    primaryContainer = OrangePrimaryVariant, // A container that uses the primary color, often more subdued
+    onPrimary = Color.Black, // As per your original
+    primaryContainer = OrangePrimaryVariant,
     onPrimaryContainer = Color.White,
 
-    secondary = BlueAccent, // Example: Using another segment color as secondary
+    secondary = BlueAccent,
     onSecondary = Color.Black,
-    secondaryContainer = Color(0xFF004A7F), // A darker container for secondary
+    secondaryContainer = Color(0xFF004A7F),
     onSecondaryContainer = Color.White,
 
-    tertiary = PinkAccent, // Example: Using another segment color as tertiary
+    tertiary = PinkAccent,
     onTertiary = Color.Black,
     tertiaryContainer = Color(0xFF6A003A),
     onTertiaryContainer = Color.White,
@@ -41,65 +50,84 @@ private val DarkColorScheme = darkColorScheme(
     background = DarkBackground,
     onBackground = OnDarkPrimary,
 
-    surface = DarkSurface, // Used for Cards, Sheets, Menus
+    surface = DarkSurface,
     onSurface = OnDarkPrimary,
 
-    surfaceVariant = DarkCenterCircle, // Can be used for elements like unselected chips, dividers, text field outlines
-    onSurfaceVariant = OnDarkSecondary, // Text/icons on top of surfaceVariant
+    surfaceVariant = DarkCenterCircle,
+    onSurfaceVariant = OnDarkSecondary,
 
-    outline = OnDarkSurfaceVariant, // Borders, dividers
-    inverseOnSurface = DarkBackground, // For text/icons on an "inverseSurface" (rarely needed for simple themes)
-    inverseSurface = OnDarkPrimary,    // For elements that need to contrast with the default surface (rarely needed)
-    // inversePrimary = ..., // (Rarely needed)
-
-    // surfaceTint = primary // Color to tint elevation overlays, typically primary
-    // scrim = Color.Black // Color for modal scrims
+    outline = OnDarkSurfaceVariant,
+    inverseOnSurface = DarkBackground,
+    inverseSurface = OnDarkPrimary
+    // inversePrimary, surfaceTint, scrim will use Material 3 defaults
+    // if not specified here.
 )
 
-// If you still want a LightColorScheme, define it here too, otherwise you can remove it
-private val LightColorScheme = lightColorScheme(
+// Define your Light Color Scheme
+// For any parameter not specified, lightColorScheme provides a default Material 3 light value.
+private val AppLightColorScheme = lightColorScheme(
     primary = OrangePrimary,
-    onPrimary = Color.White,
+    onPrimary = Color.White, // As per your original
     primaryContainer = OrangePrimaryVariant,
     onPrimaryContainer = Color.Black,
-    // ... define other light theme colors or use Material Theme Builder defaults
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
+
+    // You can continue to define your specific light theme colors here.
+    // For example, if you want a specific light background:
+    // background = Color(0xFFFFFBFE), // As per your original
+    // surface = Color(0xFFFFFBFE),   // As per your original
+
+    // Or, if you want to use Material 3 defaults for some light theme colors,
+    // simply omit them. For example, if you omit 'background', 'surface',
+    // 'onBackground', 'onSurface', 'secondary', 'onSecondary' etc.,
+    // they will take sensible default light values from Material 3.
+
+    // Let's assume you want to define a few more explicitly from your original
+    secondary = BlueAccent, // Example if BlueAccent works for light theme
+    onSecondary = Color.Black, // Or Color.White depending on BlueAccent's brightness
+    // tertiary = PinkAccent,
+    // onTertiary = Color.Black,
+
+    background = Color(0xFFFFFBFE), // Your original light background
+    onBackground = Color(0xFF1C1B1F), // Your original onBackground
+    surface = Color(0xFFFFFBFE), // Your original light surface
+    onSurface = Color(0xFF1C1B1F), // Your original onSurface
+
+    // Other colors like error, outline, etc., will use Material 3 light defaults
+    // if not specified.
 )
 
 @Composable
 fun RoyalGoldTheme( // Or whatever your Theme name is
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true, // Set to false if you ONLY want your custom theme
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
+    val colorScheme: ColorScheme = when { // Explicitly type colorScheme for clarity
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme // Fallback to your defined LightColorScheme or a default one
+        darkTheme -> AppDarkColorScheme // Use your custom dark scheme
+        else -> AppLightColorScheme     // Use your custom light scheme
     }
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb() // Match status bar to background
+            // Match status bar to background or primary, as per your design
+            window.statusBarColor = colorScheme.background.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            // Optional: for navigation bar
+            // window.navigationBarColor = colorScheme.background.toArgb()
+            // WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
         }
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography, // Make sure you have Typography defined
-        shapes = AppShapes,         // Make sure you have Shapes defined
+        colorScheme = colorScheme,        // Pass the chosen ColorScheme
+        typography = Typography,          // Make sure you have Typography.kt defined
+        shapes = AppShapes,               // Make sure you have Shapes.kt defined (e.g., AppShapes in Shapes.kt)
         content = content
     )
 }
