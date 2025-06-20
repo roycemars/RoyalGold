@@ -13,7 +13,6 @@ import com.roycemars.royalgold.view.views.charts.LineChartCard
 fun WalletScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column {
-            Text("Wallet Screen")
             LineChartCard()
         }
     }
