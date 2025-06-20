@@ -25,9 +25,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AreaChart
+import androidx.compose.material.icons.filled.Cake
 import androidx.compose.material.icons.filled.DirectionsCar
+import androidx.compose.material.icons.filled.EnergySavingsLeaf
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material.icons.filled.ShoppingBasket
+import androidx.compose.material.icons.filled.Stadium
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -70,9 +75,13 @@ data class WalletItem(
 )
 
 val sampleWalletItems = listOf(
-    WalletItem(1, "CAR LOAN", "$18,744", Icons.Filled.DirectionsCar),
-    WalletItem(2, "RAINY DAY FUND", "$6,800", Icons.Filled.Favorite, goal = "$8,000", progress = 0.85f),
-    WalletItem(3, "SPENDING", "$6,301", Icons.Filled.ShoppingBasket)
+    WalletItem(1, "CAR SERVICE", "$150", Icons.Filled.DirectionsCar),
+    WalletItem(2, "GROCERIES", "$250", Icons.Filled.ShoppingBasket),
+    WalletItem(3, "UTILITIES", "$80", Icons.Filled.LocalFireDepartment),
+    WalletItem(4, "OUTING", "$120", Icons.Filled.Stadium),
+    WalletItem(5, "RESTOCKING", "$60", Icons.Filled.EnergySavingsLeaf),
+    WalletItem(6, "UTILITIES", "$80", Icons.Filled.LocalFireDepartment),
+    WalletItem(7, "INVESTED", "$2,000", Icons.Filled.AreaChart, goal = "$20,000", progress = 0.1f),
 )
 
 @Composable
