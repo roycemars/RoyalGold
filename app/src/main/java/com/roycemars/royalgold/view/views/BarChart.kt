@@ -42,10 +42,8 @@ fun BarChart(
     maxBarValue: Float,
     barCornerRadius: Dp = 12.dp,
     barWidthFraction: Float = 0.6f,
-    chartHeight: Dp = 150.dp,
+    chartHeight: Dp = 250.dp,
     gridLineCount: Int = 5,
-    // explicitly pass darkTheme, so the chart knows how to style itself
-    // according to the theme it's currently in.
     darkTheme: Boolean = isSystemInDarkTheme()
 ) {
     // Determine colors based on the theme (light/dark)
@@ -168,7 +166,7 @@ fun BarChart(
 }
 
 @Composable
-fun BarChart(darkTheme: Boolean) { // Pass darkTheme to the sample
+fun BarChart(darkTheme: Boolean = isSystemInDarkTheme()) { // Pass darkTheme to the sample
     val sampleData = listOf(
         BarData(4593f, "INCOME", "$4,593", Color(0xFF49C6B2)),
         BarData(4466f, "EXPENSES", "$4,466", Color(0xFFF789BA)),
