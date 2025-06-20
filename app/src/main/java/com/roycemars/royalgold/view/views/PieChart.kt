@@ -99,7 +99,7 @@ fun SegmentedCircularProgressBar(
 }
 
 @Composable
-fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
+fun PieChart(modifier: Modifier = Modifier) {
     val segments = listOf(
         ProgressSegment("Housing", 2134f, OrangeSegment, Icons.Filled.Home),
         ProgressSegment("Food & drinks", 891f, BlueSegment),
@@ -188,8 +188,8 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true, backgroundColor = 0xFF1E1E2C)
 @Composable
-fun ExpensesCircularChartCardPreview() {
+fun PieChartPreview() {
     RoyalGoldTheme(darkTheme = true) { // Explicitly use dark theme for this preview
-        ExpensesCircularChartCard()
+        PieChart()
     }
 }
