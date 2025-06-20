@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
 
 // Define your colors (extract these from the screenshot or your theme)
 val OrangeSegment = Color(0xFFFFA726) // Approximate
@@ -29,10 +30,6 @@ val BlueSegment = Color(0xFF64B5F6)   // Approximate
 val PinkSegment = Color(0xFFF06292)   // Approximate
 val PurpleSegment = Color(0xFFBA68C8) // Approximate
 val GraySegment = Color(0xFF90A4AE)   // Approximate
-val DarkBackground = Color(0xFF262833) // Approximate card background
-val TextPrimaryDark = Color.White
-val TextSecondaryDark = Color(0xFFB0B0B0)
-val CenterCircleBackground = Color(0xFF3A3D4C) // Approximate
 
 data class ProgressSegment(
     val name: String,
@@ -119,7 +116,9 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
-        colors = CardDefaults.cardColors(containerColor = DarkBackground),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface // USE THEME COLOR
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -127,14 +126,15 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "EXPENSES",
-                    color = TextSecondaryDark,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR (or onSurfaceSecondary if defined)
+                    style = MaterialTheme.typography.labelSmall, // Use theme typography
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Icon(
                     Icons.Filled.ArrowDropDown, // Placeholder, replace with your actual dropdown icon
                     contentDescription = "Filter expenses",
-                    tint = TextSecondaryDark,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR
                     modifier = Modifier.size(18.dp)
                 )
             }
@@ -154,7 +154,10 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
                 Box(
                     modifier = Modifier
                         .size(60.dp) // Adjust size of the inner circle icon background
-                        .background(CenterCircleBackground, shape = CircleShape)
+                        .background(
+                            MaterialTheme.colorScheme.surfaceVariant, // USE THEME COLOR (was CenterCircleBackground)
+                            shape = CircleShape
+                        )
                         .padding(8.dp),
                     contentAlignment = Alignment.Center
                 ) {
@@ -168,13 +171,13 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = "$%,.0f".format(largestSegment.value), // Formatted value
-                    color = TextPrimaryDark,
+                    color = MaterialTheme.colorScheme.onSurface, // USE THEME COLOR (was TextPrimaryDark)
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = largestSegment.name.uppercase(),
-                    color = TextSecondaryDark,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR (was TextSecondaryDark)
                     fontSize = 12.sp,
                     letterSpacing = 0.5.sp
                 )
@@ -186,7 +189,7 @@ fun ExpensesCircularChartCard(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, backgroundColor = 0xFF1E1E2C)
 @Composable
 fun ExpensesCircularChartCardPreview() {
-    MaterialTheme { // Wrap with MaterialTheme for previews to get typography etc.
+    RoyalGoldTheme(darkTheme = true) { // Explicitly use dark theme for this preview
         ExpensesCircularChartCard()
     }
 }

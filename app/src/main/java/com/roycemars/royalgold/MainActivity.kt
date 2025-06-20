@@ -132,7 +132,7 @@ fun MainApp() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    RoyalGoldTheme {
+    RoyalGoldTheme(darkTheme = true) { // Explicitly use dark theme for this preview
         MainApp()
     }
 }
