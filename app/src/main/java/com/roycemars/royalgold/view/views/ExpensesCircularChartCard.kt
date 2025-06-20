@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.views
+package com.roycemars.royalgold.view.views
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
+import com.roycemars.royalgold.view.theme.RoyalGoldTheme
 
 // Define your colors (extract these from the screenshot or your theme)
 val OrangeSegment = Color(0xFFFFA726) // Approximate

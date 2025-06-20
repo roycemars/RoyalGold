@@ -29,14 +29,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.roycemars.royalgold.ui.screens.BudgetScreen
-import com.roycemars.royalgold.ui.screens.ScanScreen
-import com.roycemars.royalgold.ui.screens.NewsScreen
-import com.roycemars.royalgold.ui.screens.SettingsScreen
-import com.roycemars.royalgold.ui.screens.WalletScreen
-import com.roycemars.royalgold.ui.navigation.Screen
-import com.roycemars.royalgold.ui.navigation.bottomNavItems
-import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
+import com.roycemars.royalgold.view.screens.BudgetScreen
+import com.roycemars.royalgold.view.screens.ScanScreen
+import com.roycemars.royalgold.view.screens.NewsScreen
+import com.roycemars.royalgold.view.screens.SettingsScreen
+import com.roycemars.royalgold.view.screens.WalletScreen
+import com.roycemars.royalgold.view.navigation.Screen
+import com.roycemars.royalgold.view.navigation.bottomNavItems
+import com.roycemars.royalgold.view.theme.RoyalGoldTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

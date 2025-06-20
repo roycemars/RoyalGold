@@ -1,10 +1,9 @@
-package com.roycemars.royalgold.ui.theme // Adjust package name
+package com.roycemars.royalgold.view.theme // Adjust package name
 
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme

@@ -1,26 +1,16 @@
-package com.roycemars.royalgold.ui.navigation
+package com.roycemars.royalgold.view.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
-import androidx.compose.material.icons.filled.DonutLarge
 import androidx.compose.material.icons.filled.DonutSmall
 import androidx.compose.material.icons.filled.Feed
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MonetizationOn
-import androidx.compose.material.icons.filled.Newspaper
-import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.material.icons.outlined.Camera
-import androidx.compose.material.icons.outlined.DonutLarge
 import androidx.compose.material.icons.outlined.DonutSmall
 import androidx.compose.material.icons.outlined.Feed
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.MonetizationOn
-import androidx.compose.material.icons.outlined.Newspaper
-import androidx.compose.material.icons.outlined.PieChart
 import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material.icons.outlined.Wallet
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screen(

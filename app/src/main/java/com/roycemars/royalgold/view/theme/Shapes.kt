@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.theme
+package com.roycemars.royalgold.view.theme
 
 // In app/src/main/java/com/roycemars/royalgold/ui/theme/Shape.kt
 

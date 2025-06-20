@@ -1,7 +1,32 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+}
+
+configurations.all {
+    resolutionStrategy {
+        force(libs.guava)
+    }
+}
+
+// Function to safely load properties from local.properties
+fun getApiKey(propertyKey: String): String? {
+    val properties = Properties() // Use java.util.Properties
+    val localPropertiesFile = rootProject.file("local.properties") // Access local.properties at rootProject level
+    return if (localPropertiesFile.exists()) {
+        FileInputStream(localPropertiesFile).use { fis -> // Use try-with-resources for safely closing the stream
+            properties.load(fis)
+        }
+        properties.getProperty(propertyKey)
+    } else {
+        // Optionally, try to get from environment variables for CI/CD
+        System.getenv(propertyKey)
+    }
 }
 
 android {
@@ -16,6 +41,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        defaultConfig {
+            // ...
+            val geminiApiKey = getApiKey("GEMINI_API_KEY")
+            if (geminiApiKey != null) {
+                buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+            } else {
+                buildConfigField("String", "GEMINI_API_KEY", "\"MISSING_API_KEY\"")
+            }
+        }
     }
 
     buildTypes {
@@ -25,6 +60,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // For release builds, you might want to ensure the key is present
+            // val geminiApiKeyRelease = getApiKey("GEMINI_API_KEY")
+            // if (geminiApiKeyRelease == null) {
+            //     throw GradleException("GEMINI_API_KEY not found for release build.")
+            // }
+            // buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKeyRelease\"")
+        }
+        debug {
+            // You can have different logic for debug, e.g., allow a missing key
         }
     }
     compileOptions {
@@ -36,11 +80,11 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -55,6 +99,12 @@ dependencies {
     implementation(libs.androidx.material.icons.core)
     implementation(libs.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.compiler) {
+        exclude(group = "com.intellij", module = "annotations")
+    }
+    ksp(libs.androidx.room.compiler) // Use ksp for the compiler
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +116,9 @@ dependencies {
     implementation(libs.camera.lifecycle)
     implementation(libs.camera.view)
     implementation(libs.accompanist.permissions)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.guava)
 }

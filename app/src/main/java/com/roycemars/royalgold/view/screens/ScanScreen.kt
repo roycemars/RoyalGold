@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.screens // Adjust package name
+package com.roycemars.royalgold.view.screens // Adjust package name
 
 import android.net.Uri
 import android.util.Log
@@ -30,19 +30,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import java.io.File
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.semantics.error
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.text.intl.Locale
 import com.google.accompanist.permissions.*
 import java.text.SimpleDateFormat
 import java.util.Date
-import kotlin.text.format
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -187,7 +184,7 @@ fun ScanScreen() {
 }
 
 @SuppressLint("SimpleDateFormat")
-fun createPhotoFile(context: android.content.Context): File {
+fun createPhotoFile(context: Context): File {
     val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
     val storageDir = context.externalCacheDir ?: context.cacheDir // Prefer external cache
     return File.createTempFile(

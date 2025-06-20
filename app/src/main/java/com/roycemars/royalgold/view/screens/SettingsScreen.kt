@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.screens // Adjust package name
+package com.roycemars.royalgold.view.screens // Adjust package name
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,8 +8,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun WalletScreen() {
+fun SettingsScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Wallet Screen")
+        Text("Settings Screen")
     }
 }

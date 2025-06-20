@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.theme
+package com.roycemars.royalgold.view.theme
 
 import androidx.compose.ui.graphics.Color
 
