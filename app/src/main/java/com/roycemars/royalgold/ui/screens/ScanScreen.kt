@@ -60,7 +60,8 @@ fun ScanScreen() {
     // Request permission and setup camera provider
     LaunchedEffect(key1 = cameraPermissionState.status) {
         if (!cameraPermissionState.status.isGranted) {
-            cameraPermissionState.launchPermissionRequest()
+            // cameraPermissionState.launchPermissionRequest() // THIS IS WHERE YOU WERE DOING IT
+            // This is fine for an *initial* attempt
         } else {
             val providerFuture = ProcessCameraProvider.getInstance(context)
             providerFuture.addListener({
@@ -158,14 +159,21 @@ fun ScanScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Camera permission is required to scan receipts.")
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = { cameraPermissionState.launchPermissionRequest() }) {
-                Text("Grant Permission")
+            val textToShow = if (cameraPermissionState.status.shouldShowRationale) {
+                // If shouldShowRationale is true, it means the user has denied the
+                // permission at least once. You should explain why you need it.
+                "Camera permission is important for scanning receipts. Please grant the permission."
+            } else {
+                // First time asking for permission or user denied with "Don't ask again"
+                "Camera permission is required to scan receipts."
             }
-            if (cameraPermissionState.status.shouldShowRationale) {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text("Please grant camera permission to use the scanner.")
+            Text(textToShow)
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(onClick = {
+                // Directly launch the permission request when the button is clicked
+                cameraPermissionState.launchPermissionRequest()
+            }) {
+                Text("Grant Permission")
             }
         }
     }
