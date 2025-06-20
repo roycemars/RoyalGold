@@ -27,10 +27,10 @@ import androidx.core.view.WindowCompat
 // Define your Dark Color Scheme using your custom colors
 // For any parameter not specified, darkColorScheme provides a default Material 3 dark value.
 private val AppDarkColorScheme = darkColorScheme(
-    primary = OrangePrimary,
-    onPrimary = Color.Black, // As per your original
-    primaryContainer = OrangePrimaryVariant,
-    onPrimaryContainer = Color.White,
+    primary = VibrantPurple,
+    onPrimary = WhiteForOnPurple, // As per your original
+    primaryContainer = VibrantPurple,
+    onPrimaryContainer = WhiteForOnPurple,
 
     secondary = BlueAccent,
     onSecondary = Color.Black,
@@ -66,10 +66,10 @@ private val AppDarkColorScheme = darkColorScheme(
 // Define your Light Color Scheme
 // For any parameter not specified, lightColorScheme provides a default Material 3 light value.
 private val AppLightColorScheme = lightColorScheme(
-    primary = OrangePrimary,
-    onPrimary = Color.White, // As per your original
-    primaryContainer = OrangePrimaryVariant,
-    onPrimaryContainer = Color.Black,
+    primary = VibrantPurple,
+    onPrimary = WhiteForOnPurple, // As per your original
+    primaryContainer = VibrantPurple,
+    onPrimaryContainer = WhiteForOnPurple,
 
     // You can continue to define your specific light theme colors here.
     // For example, if you want a specific light background:
@@ -99,7 +99,7 @@ private val AppLightColorScheme = lightColorScheme(
 @Composable
 fun RoyalGoldTheme( // Or whatever your Theme name is
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true, // Set to false if you ONLY want your custom theme
+    dynamicColor: Boolean = false, // Set to false if you ONLY want your custom theme
     content: @Composable () -> Unit
 ) {
     val colorScheme: ColorScheme = when { // Explicitly type colorScheme for clarity

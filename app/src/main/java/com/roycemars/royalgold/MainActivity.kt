@@ -61,8 +61,8 @@ fun MainApp() {
             TopAppBar(
                 title = { Text(currentScreenTitle) }, // Dynamic title
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer, // Or your desired color
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    containerColor = MaterialTheme.colorScheme.primary, // Or your desired color
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

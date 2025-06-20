@@ -10,6 +10,9 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
+val VibrantPurple = Color(0xFF8A2BE2)
+val WhiteForOnPurple = Color.White
+
 // Primary Accent (using the orange from your chart for vibrancy)
 val OrangePrimary = Color(0xFFFFA726)
 val OrangePrimaryVariant = Color(0xFFE69500) // A slightly darker variant for consistency
