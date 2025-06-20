@@ -3,14 +3,22 @@ package com.roycemars.royalgold.ui.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.DonutLarge
+import androidx.compose.material.icons.filled.DonutSmall
+import androidx.compose.material.icons.filled.Feed
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MonetizationOn
 import androidx.compose.material.icons.filled.Newspaper
+import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.material.icons.outlined.Camera
 import androidx.compose.material.icons.outlined.DonutLarge
+import androidx.compose.material.icons.outlined.DonutSmall
+import androidx.compose.material.icons.outlined.Feed
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.MonetizationOn
 import androidx.compose.material.icons.outlined.Newspaper
+import androidx.compose.material.icons.outlined.PieChart
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Wallet
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -30,20 +38,20 @@ sealed class Screen(
     data object Budget : Screen(
         route = "budget",
         title = "Budget",
-        selectedIcon = Icons.Filled.DonutLarge,
-        unselectedIcon = Icons.Outlined.DonutLarge
+        selectedIcon = Icons.Filled.DonutSmall,
+        unselectedIcon = Icons.Outlined.DonutSmall
     )
     data object Wallet : Screen(
         route = "wallet",
         title = "Wallet",
-        selectedIcon = Icons.Filled.Wallet,
-        unselectedIcon = Icons.Outlined.Wallet
+        selectedIcon = Icons.Filled.MonetizationOn,
+        unselectedIcon = Icons.Outlined.MonetizationOn
     )
     data object News : Screen(
         route = "news",
         title = "News",
-        selectedIcon = Icons.Filled.Newspaper,
-        unselectedIcon = Icons.Outlined.Newspaper
+        selectedIcon = Icons.Filled.Feed,
+        unselectedIcon = Icons.Outlined.Feed
     )
     data object Settings : Screen(
         route = "settings",
