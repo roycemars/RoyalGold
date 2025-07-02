@@ -1,8 +1,8 @@
-package com.roycemars.royalgold.ui.features.scanner
+package com.roycemars.royalgold.ui.scanner
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.roycemars.royalgold.data.ai.AiReceiptScanner
+import com.roycemars.royalgold.data.scanner.AiReceiptScanner
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.io.File

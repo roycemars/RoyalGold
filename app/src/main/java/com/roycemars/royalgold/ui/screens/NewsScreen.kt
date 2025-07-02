@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import com.roycemars.royalgold.data.news.CmcAssetMentioned
 import com.roycemars.royalgold.data.news.CmcNewsArticle
 import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
-import com.roycemars.royalgold.ui.features.news.NewsUiState
-import com.roycemars.royalgold.ui.features.news.NewsViewModel
+import com.roycemars.royalgold.ui.news.NewsUiState
+import com.roycemars.royalgold.ui.news.NewsViewModel
 import kotlinx.coroutines.flow.StateFlow
 import android.content.Intent
 import android.net.Uri

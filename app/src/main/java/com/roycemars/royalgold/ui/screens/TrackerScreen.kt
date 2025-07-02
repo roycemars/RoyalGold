@@ -194,7 +194,7 @@ fun ScanScreen() {
                 onClick = { lastSavedImageUri = null /* Reset to allow re-scan or go back */ },
                 modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally)
             ) {
-                Text("Scan Another Receipt")
+                Text("Scan Receipt")
             }
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(wallets) { wallet ->

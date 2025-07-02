@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.data.ai
+package com.roycemars.royalgold.data.scanner
 
 import android.util.Base64
 import android.util.Log
