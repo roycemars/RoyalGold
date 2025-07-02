@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.network
+package com.roycemars.royalgold.model.network.gemini
 
 import retrofit2.Response // Use Retrofit's Response for more details
 import retrofit2.http.Body

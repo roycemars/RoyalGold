@@ -1,4 +1,4 @@
-package com.roycemars.royalgold
+package com.roycemars.royalgold.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

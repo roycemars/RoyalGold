@@ -2,20 +2,19 @@ package com.roycemars.royalgold.model.ai
 
 import android.util.Base64
 import android.util.Log
-import androidx.compose.ui.semantics.text
 import com.roycemars.royalgold.BuildConfig
-import com.roycemars.royalgold.network.ContentRequest
-import com.roycemars.royalgold.network.GeminiRequest
-import com.roycemars.royalgold.network.InlineData
-import com.roycemars.royalgold.network.PartRequest
-import com.roycemars.royalgold.network.RetrofitClient
+import com.roycemars.royalgold.model.network.gemini.ContentRequest
+import com.roycemars.royalgold.model.network.gemini.GeminiRequest
+import com.roycemars.royalgold.model.network.gemini.InlineData
+import com.roycemars.royalgold.model.network.gemini.PartRequest
+import com.roycemars.royalgold.model.network.gemini.GeminiRetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.File
 
 class AiReceiptScanner {
-    private val geminiService = RetrofitClient.instance
+    private val geminiService = GeminiRetrofitClient.instance
 
     suspend fun callGeminiAPI(imageFile: File): JSONObject {
         val apiKey = BuildConfig.GEMINI_API_KEY // Access the key here

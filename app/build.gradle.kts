@@ -45,11 +45,10 @@ android {
         defaultConfig {
             // ...
             val geminiApiKey = getApiKey("GEMINI_API_KEY")
-            if (geminiApiKey != null) {
-                buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
-            } else {
-                buildConfigField("String", "GEMINI_API_KEY", "\"MISSING_API_KEY\"")
-            }
+            buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+
+            val cmcApiKey = getApiKey("CMC_PRO_API_KEY")
+            buildConfigField("String", "CMC_PRO_API_KEY", "\"$cmcApiKey\"")
         }
     }
 
@@ -121,4 +120,21 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.guava)
+
+    // Retrofit & Gson
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp) // Retrofit needs OkHttp
+    implementation(libs.logging.interceptor) // Optional: For logging network requests
+
+    // Coroutines for asynchronous operations
+    implementation(libs.kotlinx.coroutines.core) // Or latest
+    implementation(libs.kotlinx.coroutines.android) // Or latest
+
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) // Check your libs.versions.toml
+    implementation(libs.androidx.lifecycle.runtime.compose) // For collectAsStateWithLifecycle
+
+    // Coil for Image Loading
+    implementation(libs.coil.compose)
 }

@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.network
+package com.roycemars.royalgold.model.network.gemini
 
 import com.google.gson.annotations.SerializedName
 
