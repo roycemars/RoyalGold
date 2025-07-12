@@ -37,14 +37,16 @@ import com.roycemars.royalgold.ui.screens.WalletScreen
 import com.roycemars.royalgold.ui.navigation.Screen
 import com.roycemars.royalgold.ui.navigation.bottomNavItems
 import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             RoyalGoldTheme {
-                MainApp()
+                MainScreen()
             }
         }
     }
@@ -52,7 +54,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainApp() {
+fun MainScreen() {
     val navController = rememberNavController()
     var currentScreenTitle by remember { mutableStateOf(Screen.Scan.title) }
 
@@ -133,6 +135,6 @@ fun MainApp() {
 @Composable
 fun DefaultPreview() {
     RoyalGoldTheme(darkTheme = true) { // Explicitly use dark theme for this preview
-        MainApp()
+        MainScreen()
     }
 }

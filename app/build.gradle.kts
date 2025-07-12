@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 configurations.all {
@@ -137,4 +139,15 @@ dependencies {
 
     // Coil for Image Loading
     implementation(libs.coil.compose)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    // Hilt ViewModel integration
+    implementation(libs.hilt.navigation.compose)
+}
+
+kapt {
+    correctErrorTypes = true
 }

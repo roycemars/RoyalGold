@@ -8,9 +8,10 @@ import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material.icons.filled.ShoppingBasket
 import androidx.compose.material.icons.filled.Stadium
 import com.roycemars.royalgold.model.expenses.ExpenseItem
+import javax.inject.Inject
 
-class ExpenseItemsProviderMockImpl : ExpenseItemsProvider {
-    override fun getExpenseItems() = listOf(
+class ExpenseItemsProviderMockImpl @Inject constructor() : ExpenseItemsProvider {
+    override fun getExpenseItemsList() = listOf(
         ExpenseItem(1, "CAR SERVICE", "$150", Icons.Filled.DirectionsCar),
         ExpenseItem(2, "GROCERIES", "$250", Icons.Filled.ShoppingBasket),
         ExpenseItem(3, "UTILITIES", "$80", Icons.Filled.LocalFireDepartment),

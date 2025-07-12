@@ -40,20 +40,22 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
-import com.roycemars.royalgold.data.expenses.ExpenseItemsProviderMockImpl
 import com.roycemars.royalgold.ui.screens.expenses.ExpenseListItem
+import com.roycemars.royalgold.ui.screens.expenses.ExpensesScreenViewModel
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun ScanScreen() {
-    val expItemsProvider = ExpenseItemsProviderMockImpl()
+fun ScanScreen(
+    viewModel: ExpensesScreenViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
@@ -64,7 +66,7 @@ fun ScanScreen() {
     val imageCaptureUseCase = remember { ImageCapture.Builder().build() }
     var cameraProvider: ProcessCameraProvider? by remember { mutableStateOf(null) }
 
-    val expenseItems = expItemsProvider.getExpenseItems() // Use the sample data
+    val expenseItemsList = remember { viewModel.expenseItemsList }
 
     LaunchedEffect(key1 = cameraPermissionState.status) {
         if (cameraPermissionState.status.isGranted) { // Only if granted
@@ -100,7 +102,7 @@ fun ScanScreen() {
                 Text("Scan Receipt")
             }
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(expenseItems) { wallet ->
+                items(expenseItemsList) { wallet ->
                     ExpenseListItem(item = wallet)
                 }
             }
@@ -144,7 +146,7 @@ fun ScanScreen() {
                     .fillMaxWidth()
                     .weight(1f) // Takes remaining space
             ) {
-                items(expenseItems) { wallet ->
+                items(expenseItemsList) { wallet ->
                     ExpenseListItem(item = wallet)
                 }
             }
