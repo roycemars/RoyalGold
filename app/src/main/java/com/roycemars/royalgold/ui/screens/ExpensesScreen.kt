@@ -1,8 +1,6 @@
 package com.roycemars.royalgold.ui.screens // Adjust package name
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.camera.core.CameraSelector
@@ -47,15 +45,13 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import com.roycemars.royalgold.ui.screens.expenses.ExpenseListItem
 import com.roycemars.royalgold.ui.screens.expenses.ExpensesScreenViewModel
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ScanScreen(
     viewModel: ExpensesScreenViewModel = hiltViewModel()
 ) {
+    val receiptScanner = viewModel.receiptScannerImpl
     val context = LocalContext.current
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
@@ -197,7 +193,7 @@ fun ScanScreen(
                         captureError = null
                         // lastSavedImageUri = null // Already null here
 
-                        val photoFile = createPhotoFile(context)
+                        val photoFile = receiptScanner.createPhotoFile(context)
                         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
                         imageCaptureUseCase.takePicture(
@@ -233,17 +229,4 @@ fun ScanScreen(
             cameraProvider?.unbindAll()
         }
     }
-}
-
-// createPhotoFile function (no change here)
-@SuppressLint("SimpleDateFormat")
-fun createPhotoFile(context: Context): File {
-    // ... (existing implementation)
-    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-    val storageDir = context.externalCacheDir ?: context.cacheDir // Prefer external cache
-    return File.createTempFile(
-        "JPEG_${timeStamp}_",
-        ".jpg",
-        storageDir
-    )
 }
