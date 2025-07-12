@@ -14,29 +14,17 @@ import androidx.camera.view.PreviewView
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AreaChart
-import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material.icons.filled.EnergySavingsLeaf
-import androidx.compose.material.icons.filled.LocalFireDepartment
-import androidx.compose.material.icons.filled.ShoppingBasket
-import androidx.compose.material.icons.filled.Stadium
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,10 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
@@ -60,83 +45,17 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import com.roycemars.royalgold.data.expenses.ExpenseItemsProviderMockImpl
-import com.roycemars.royalgold.model.expenses.ExpenseItem
+import com.roycemars.royalgold.ui.screens.expenses.ExpenseListItem
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
-
-@Composable
-fun WalletListItem(item: ExpenseItem, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 6.dp, horizontal = 16.dp),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = item.name.uppercase(), // As per screenshot
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                )
-                Text(
-                    text = item.amount,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                if (item.goal != null && item.progress != null) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    LinearProgressIndicator(
-                        progress = { item.progress },
-                        modifier = Modifier.fillMaxWidth(0.8f),
-                        color = MaterialTheme.colorScheme.primary,
-                        trackColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth(0.8f),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            "Goal:",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-                        )
-                        Text(
-                            item.goal,
-                            style = MaterialTheme.typography.bodySmall,
-                            fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
-                        )
-                    }
-                }
-            }
-            Icon(
-                imageVector = item.icon,
-                contentDescription = item.name,
-                modifier = Modifier.size(36.dp),
-                tint = MaterialTheme.colorScheme.primary
-            )
-        }
-    }
-}
-// --- End of WalletListItem Composable ---
-
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ScanScreen() {
     val expItemsProvider = ExpenseItemsProviderMockImpl()
     val context = LocalContext.current
-    val lifecycleOwner = LocalLifecycleOwner.current
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
 
     var isCapturing by remember { mutableStateOf(false) }
@@ -182,7 +101,7 @@ fun ScanScreen() {
             }
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(wallets) { wallet ->
-                    WalletListItem(item = wallet)
+                    ExpenseListItem(item = wallet)
                 }
             }
         }
@@ -226,7 +145,7 @@ fun ScanScreen() {
                     .weight(1f) // Takes remaining space
             ) {
                 items(wallets) { wallet ->
-                    WalletListItem(item = wallet)
+                    ExpenseListItem(item = wallet)
                 }
             }
         }
