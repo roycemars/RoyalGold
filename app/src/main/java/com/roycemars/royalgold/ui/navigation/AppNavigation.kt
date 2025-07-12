@@ -20,8 +20,8 @@ sealed class Screen(
     val unselectedIcon: ImageVector
 ) {
     data object Scan : Screen(
-        route = "tracker",
-        title = "Tracker",
+        route = "expenses",
+        title = "Expenses",
         selectedIcon = Icons.Filled.Camera,
         unselectedIcon = Icons.Outlined.Camera
     )
@@ -32,14 +32,14 @@ sealed class Screen(
         unselectedIcon = Icons.Outlined.DonutSmall
     )
     data object Wallet : Screen(
-        route = "wallet",
-        title = "Wallet",
+        route = "portfolio",
+        title = "Portfolio",
         selectedIcon = Icons.Filled.MonetizationOn,
         unselectedIcon = Icons.Outlined.MonetizationOn
     )
     data object News : Screen(
-        route = "news",
-        title = "News",
+        route = "market",
+        title = "Market",
         selectedIcon = Icons.Filled.Feed,
         unselectedIcon = Icons.Outlined.Feed
     )
