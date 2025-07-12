@@ -59,31 +59,14 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
+import com.roycemars.royalgold.data.expenses.ExpenseItemsProviderMockImpl
+import com.roycemars.royalgold.model.expenses.ExpenseItem
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 
-data class WalletItem(
-    val id: Int,
-    val name: String,
-    val amount: String,
-    val icon: ImageVector,
-    val goal: String? = null,
-    val progress: Float? = null
-)
-
-val sampleWalletItems = listOf(
-    WalletItem(1, "CAR SERVICE", "$150", Icons.Filled.DirectionsCar),
-    WalletItem(2, "GROCERIES", "$250", Icons.Filled.ShoppingBasket),
-    WalletItem(3, "UTILITIES", "$80", Icons.Filled.LocalFireDepartment),
-    WalletItem(4, "OUTING", "$120", Icons.Filled.Stadium),
-    WalletItem(5, "RESTOCKING", "$60", Icons.Filled.EnergySavingsLeaf),
-    WalletItem(6, "UTILITIES", "$80", Icons.Filled.LocalFireDepartment),
-    WalletItem(7, "INVESTED", "$2,000", Icons.Filled.AreaChart, goal = "$20,000", progress = 0.1f),
-)
-
 @Composable
-fun WalletListItem(item: WalletItem, modifier: Modifier = Modifier) {
+fun WalletListItem(item: ExpenseItem, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -151,6 +134,7 @@ fun WalletListItem(item: WalletItem, modifier: Modifier = Modifier) {
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ScanScreen() {
+    val expItemsProvider = ExpenseItemsProviderMockImpl()
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
@@ -161,7 +145,7 @@ fun ScanScreen() {
     val imageCaptureUseCase = remember { ImageCapture.Builder().build() }
     var cameraProvider: ProcessCameraProvider? by remember { mutableStateOf(null) }
 
-    val wallets = sampleWalletItems // Use the sample data
+    val wallets = expItemsProvider.getExpenseItems() // Use the sample data
 
     LaunchedEffect(key1 = cameraPermissionState.status) {
         if (cameraPermissionState.status.isGranted) { // Only if granted
