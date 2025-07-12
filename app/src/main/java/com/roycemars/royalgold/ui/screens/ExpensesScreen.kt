@@ -64,7 +64,7 @@ fun ScanScreen() {
     val imageCaptureUseCase = remember { ImageCapture.Builder().build() }
     var cameraProvider: ProcessCameraProvider? by remember { mutableStateOf(null) }
 
-    val wallets = expItemsProvider.getExpenseItems() // Use the sample data
+    val expenseItems = expItemsProvider.getExpenseItems() // Use the sample data
 
     LaunchedEffect(key1 = cameraPermissionState.status) {
         if (cameraPermissionState.status.isGranted) { // Only if granted
@@ -100,7 +100,7 @@ fun ScanScreen() {
                 Text("Scan Receipt")
             }
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(wallets) { wallet ->
+                items(expenseItems) { wallet ->
                     ExpenseListItem(item = wallet)
                 }
             }
@@ -144,7 +144,7 @@ fun ScanScreen() {
                     .fillMaxWidth()
                     .weight(1f) // Takes remaining space
             ) {
-                items(wallets) { wallet ->
+                items(expenseItems) { wallet ->
                     ExpenseListItem(item = wallet)
                 }
             }
