@@ -1,11 +1,13 @@
 package com.roycemars.royalgold.ui.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AreaChart
 import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.DonutSmall
 import androidx.compose.material.icons.filled.Feed
 import androidx.compose.material.icons.filled.MonetizationOn
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.AreaChart
 import androidx.compose.material.icons.outlined.Camera
 import androidx.compose.material.icons.outlined.DonutSmall
 import androidx.compose.material.icons.outlined.Feed
@@ -40,8 +42,8 @@ sealed class Screen(
     data object News : Screen(
         route = "market",
         title = "Market",
-        selectedIcon = Icons.Filled.Feed,
-        unselectedIcon = Icons.Outlined.Feed
+        selectedIcon = Icons.Filled.AreaChart,
+        unselectedIcon = Icons.Outlined.AreaChart
     )
     data object Settings : Screen(
         route = "settings",
