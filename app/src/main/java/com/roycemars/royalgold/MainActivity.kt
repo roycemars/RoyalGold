@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui
+package com.roycemars.royalgold
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -36,6 +36,7 @@ import com.roycemars.royalgold.ui.screens.SettingsScreen
 import com.roycemars.royalgold.ui.screens.WalletScreen
 import com.roycemars.royalgold.ui.navigation.Screen
 import com.roycemars.royalgold.ui.navigation.bottomNavItems
+import com.roycemars.royalgold.ui.screens.ExpensesListScreen
 import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    var currentScreenTitle by remember { mutableStateOf(Screen.Scan.title) }
+    var currentScreenTitle by remember { mutableStateOf(Screen.Expenses.title) }
 
     Scaffold(
         topBar = {
@@ -118,13 +119,13 @@ fun MainScreen() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Scan.route, // Your initial screen
+            startDestination = Screen.Portfolio.route, // Your initial screen
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Scan.route) { ScanScreen() }
+            composable(Screen.Expenses.route) { ExpensesListScreen() }
             composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
-            composable(Screen.Wallet.route) { WalletScreen() }
-            composable(Screen.News.route) { NewsScreen() }
+            composable(Screen.Portfolio.route) { WalletScreen() }
+            composable(Screen.Market.route) { NewsScreen() }
             composable(Screen.Settings.route) { SettingsScreen() }
             // Add other composable routes here if needed
         }

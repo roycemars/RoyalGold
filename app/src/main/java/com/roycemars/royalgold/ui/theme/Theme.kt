@@ -27,14 +27,14 @@ import androidx.core.view.WindowCompat
 // Define your Dark Color Scheme using your custom colors
 // For any parameter not specified, darkColorScheme provides a default Material 3 dark value.
 private val AppDarkColorScheme = darkColorScheme(
-    primary = VibrantPurple,
-    onPrimary = WhiteForOnPurple, // As per your original
-    primaryContainer = VibrantPurple,
-    onPrimaryContainer = WhiteForOnPurple,
+    primary = Purple,
+    onPrimary = Color.White,// WhiteForOnPurple, // As per your original
+    primaryContainer = DarkPurple,
+    onPrimaryContainer = Color.White,
 
-    secondary = BlueAccent,
+    secondary = Gold, // BlueAccent,
     onSecondary = Color.Black,
-    secondaryContainer = Color(0xFF004A7F),
+    secondaryContainer = DarkGold,
     onSecondaryContainer = Color.White,
 
     tertiary = PinkAccent,
@@ -66,9 +66,9 @@ private val AppDarkColorScheme = darkColorScheme(
 // Define your Light Color Scheme
 // For any parameter not specified, lightColorScheme provides a default Material 3 light value.
 private val AppLightColorScheme = lightColorScheme(
-    primary = VibrantPurple,
+    primary = Purple,
     onPrimary = WhiteForOnPurple, // As per your original
-    primaryContainer = VibrantPurple,
+    primaryContainer = Purple,
     onPrimaryContainer = WhiteForOnPurple,
 
     // You can continue to define your specific light theme colors here.
