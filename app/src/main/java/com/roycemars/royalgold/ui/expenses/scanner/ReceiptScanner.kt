@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.scanner
+package com.roycemars.royalgold.ui.expenses.scanner
 
 import android.content.Context
 import java.io.File

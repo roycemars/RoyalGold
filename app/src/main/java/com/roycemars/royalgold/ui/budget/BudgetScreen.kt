@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.screens // Adjust package name
+package com.roycemars.royalgold.ui.budget // Adjust package name
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +13,9 @@ import androidx.compose.ui.unit.dp
 import com.roycemars.royalgold.ui.views.charts.BarChart
 import com.roycemars.royalgold.ui.views.charts.PieChart
 
+/**
+ * TODO: add Firebase for remote database sync
+ */
 @Composable
 fun BudgetScreen() {
     val scrollState = rememberScrollState()

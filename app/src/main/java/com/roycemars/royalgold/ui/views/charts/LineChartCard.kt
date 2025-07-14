@@ -41,6 +41,10 @@ import androidx.compose.ui.unit.sp
 import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
 import kotlin.random.Random
 
+/**
+ * TODO: Replace with MPAndroidChart
+ */
+
 @Composable
 fun LineChartCard(
     modifier: Modifier = Modifier,

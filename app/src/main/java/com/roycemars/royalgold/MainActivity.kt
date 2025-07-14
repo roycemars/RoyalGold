@@ -29,14 +29,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.roycemars.royalgold.ui.screens.BudgetScreen
-import com.roycemars.royalgold.ui.screens.ScanScreen
-import com.roycemars.royalgold.ui.screens.NewsScreen
-import com.roycemars.royalgold.ui.screens.SettingsScreen
-import com.roycemars.royalgold.ui.screens.WalletScreen
+import com.roycemars.royalgold.ui.budget.BudgetScreen
+import com.roycemars.royalgold.ui.market.NewsScreen
+import com.roycemars.royalgold.ui.settings.SettingsScreen
+import com.roycemars.royalgold.ui.portfolio.WalletScreen
 import com.roycemars.royalgold.ui.navigation.Screen
 import com.roycemars.royalgold.ui.navigation.bottomNavItems
-import com.roycemars.royalgold.ui.screens.ExpensesListScreen
+import com.roycemars.royalgold.ui.expenses.ExpensesListScreen
 import com.roycemars.royalgold.ui.theme.RoyalGoldTheme
 import dagger.hilt.android.AndroidEntryPoint
 

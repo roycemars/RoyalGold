@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.news
+package com.roycemars.royalgold.ui.market
 
 import com.roycemars.royalgold.data.network.news.RetrofitClient
 import com.roycemars.royalgold.data.news.CmcNewsArticle

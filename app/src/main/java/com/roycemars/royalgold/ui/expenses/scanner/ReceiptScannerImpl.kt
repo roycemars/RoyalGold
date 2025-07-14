@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.scanner
+package com.roycemars.royalgold.ui.expenses.scanner
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,6 +6,10 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import javax.inject.Inject
+
+/**
+ * TODO: Convert receipt image to database records with Gemini
+ */
 
 class ReceiptScannerImpl @Inject constructor() : ReceiptScanner {
     @SuppressLint("SimpleDateFormat")

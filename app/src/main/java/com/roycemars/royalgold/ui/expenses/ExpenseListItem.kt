@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.screens.expenses
+package com.roycemars.royalgold.ui.expenses
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement

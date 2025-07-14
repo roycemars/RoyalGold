@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.ui.screens
+package com.roycemars.royalgold.ui.expenses
 
 import android.util.Log
 import androidx.compose.foundation.layout.padding
@@ -11,14 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.roycemars.royalgold.R
-import com.roycemars.royalgold.ui.screens.expenses.ExpensesScreenViewModel
 import com.roycemars.royalgold.ui.theme.Gold
+
+/**
+ * TODO: Implement list of expenses backed with database and camerax scanner of receipts
+ */
 
 @Composable
 fun ExpensesListScreen(
