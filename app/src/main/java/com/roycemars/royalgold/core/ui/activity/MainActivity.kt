@@ -34,7 +34,7 @@ import com.roycemars.royalgold.app.navigation.bottomNavItems
 import com.roycemars.royalgold.core.ui.theme.AppTheme
 import com.roycemars.royalgold.feature.budget.ui.BudgetScreen
 import com.roycemars.royalgold.feature.expenses.ui.ExpensesScreen
-import com.roycemars.royalgold.feature.market.ui.NewsScreen
+import com.roycemars.royalgold.feature.market.ui.MarketScreen
 import com.roycemars.royalgold.feature.portfolio.ui.PortfolioScreen
 import com.roycemars.royalgold.feature.settings.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -125,7 +125,7 @@ fun MainScreen() {
             composable(Screen.Expenses.route) { ExpensesScreen() }
             composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
             composable(Screen.Portfolio.route) { PortfolioScreen() }
-            composable(Screen.Market.route) { NewsScreen() }
+            composable(Screen.Market.route) { MarketScreen() }
             composable(Screen.Settings.route) { SettingsScreen() }
             // Add other composable routes here if needed
         }

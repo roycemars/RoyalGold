@@ -16,8 +16,11 @@ configurations.all {
     }
 }
 
-//val coinMarketCapApiKey: String by project
-val coinMarketCapApiKey = project.findProperty("API_KEY") as? String ?: ""
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
+}
+
+val coinMarketCapApiKey = localProperties.getProperty("COINMARKETCAP_API_KEY") ?: ""
 
 android {
     namespace = "com.roycemars.royalgold"
