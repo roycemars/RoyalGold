@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.app
+package com.roycemars.royalgold.app.di
 
 import android.content.Context
 import com.roycemars.royalgold.feature.market.data.NewsRepository
