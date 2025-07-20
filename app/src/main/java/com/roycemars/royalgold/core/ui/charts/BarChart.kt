@@ -24,9 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.AppTheme
-import com.example.compose.primaryContainerLight
-import com.example.compose.primaryLight
+import com.roycemars.royalgold.core.ui.theme.AppTheme
+import com.roycemars.royalgold.core.ui.theme.primaryContainerLight
+import com.roycemars.royalgold.core.ui.theme.primaryLight
 
 data class BarData(
     val value: Float,

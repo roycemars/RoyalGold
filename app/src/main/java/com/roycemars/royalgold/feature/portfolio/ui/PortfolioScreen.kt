@@ -13,7 +13,7 @@ import com.roycemars.royalgold.core.ui.charts.LineChartCard
  * Next - add suggestions to reallocate portfolio based on Market Gemini analysis of crypto trends
  */
 @Composable
-fun WalletScreen() {
+fun PortfolioScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column {
             LineChartCard()

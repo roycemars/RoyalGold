@@ -105,6 +105,7 @@ dependencies {
     implementation(libs.androidx.room.compiler) {
         exclude(group = "com.intellij", module = "annotations")
     }
+    implementation(libs.androidx.ui.text.google.fonts)
     ksp(libs.androidx.room.compiler) // Use ksp for the compiler
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -29,13 +29,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.compose.AppTheme
 import com.roycemars.royalgold.app.navigation.Screen
 import com.roycemars.royalgold.app.navigation.bottomNavItems
+import com.roycemars.royalgold.core.ui.theme.AppTheme
 import com.roycemars.royalgold.feature.budget.ui.BudgetScreen
-import com.roycemars.royalgold.feature.expenses.ui.ExpenseListScreen
+import com.roycemars.royalgold.feature.expenses.ui.ExpensesScreen
 import com.roycemars.royalgold.feature.market.ui.NewsScreen
-import com.roycemars.royalgold.feature.portfolio.ui.WalletScreen
+import com.roycemars.royalgold.feature.portfolio.ui.PortfolioScreen
 import com.roycemars.royalgold.feature.settings.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -122,9 +122,9 @@ fun MainScreen() {
             startDestination = Screen.Portfolio.route, // Your initial screen
             modifier = Modifier.Companion.padding(innerPadding)
         ) {
-            composable(Screen.Expenses.route) { ExpenseListScreen() }
+            composable(Screen.Expenses.route) { ExpensesScreen() }
             composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
-            composable(Screen.Portfolio.route) { WalletScreen() }
+            composable(Screen.Portfolio.route) { PortfolioScreen() }
             composable(Screen.Market.route) { NewsScreen() }
             composable(Screen.Settings.route) { SettingsScreen() }
             // Add other composable routes here if needed
