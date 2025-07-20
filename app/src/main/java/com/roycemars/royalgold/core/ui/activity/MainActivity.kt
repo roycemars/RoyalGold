@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,9 +46,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AppTheme {
-                MainScreen()
-            }
+            MainScreen()
         }
     }
 }
@@ -57,77 +56,80 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     val navController = rememberNavController()
     var currentScreenTitle by remember { mutableStateOf(Screen.Expenses.title) }
+    val useDynamicTheme = rememberSaveable { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(currentScreenTitle) }, // Dynamic title
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary, // Or your desired color
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        },
-        bottomBar = {
-            NavigationBar(
-                containerColor = MaterialTheme.colorScheme.surface, // Or your specific bottom bar color
-                contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-            ) {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-
-                bottomNavItems.forEach { screen ->
-                    val selected =
-                        currentDestination?.hierarchy?.any { it.route == screen.route } == true
-                    NavigationBarItem(
-                        selected = selected,
-                        onClick = {
-                            currentScreenTitle = screen.title // Update title on click
-                            navController.navigate(screen.route) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
-                                // on the back stack as users select items
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
-                                launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
-                                restoreState = true
-                            }
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = if (selected) screen.selectedIcon else screen.unselectedIcon,
-                                contentDescription = screen.title
-                            )
-                        },
-                        label = { Text(screen.title) },
-                        alwaysShowLabel = true, // As seen in your screenshot
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = MaterialTheme.colorScheme.primary, // Color for selected icon
-                            selectedTextColor = MaterialTheme.colorScheme.primary, // Color for selected text
-                            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            indicatorColor = Color.Companion.Transparent // Or your choice for indicator
-                        )
+    AppTheme(dynamicColor = useDynamicTheme.value) {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(currentScreenTitle) }, // Dynamic title
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary, // Or your desired color
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary
                     )
+                )
+            },
+            bottomBar = {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.surface, // Or your specific bottom bar color
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                ) {
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val currentDestination = navBackStackEntry?.destination
+
+                    bottomNavItems.forEach { screen ->
+                        val selected =
+                            currentDestination?.hierarchy?.any { it.route == screen.route } == true
+                        NavigationBarItem(
+                            selected = selected,
+                            onClick = {
+                                currentScreenTitle = screen.title // Update title on click
+                                navController.navigate(screen.route) {
+                                    // Pop up to the start destination of the graph to
+                                    // avoid building up a large stack of destinations
+                                    // on the back stack as users select items
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    // Avoid multiple copies of the same destination when
+                                    // reselecting the same item
+                                    launchSingleTop = true
+                                    // Restore state when reselecting a previously selected item
+                                    restoreState = true
+                                }
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = if (selected) screen.selectedIcon else screen.unselectedIcon,
+                                    contentDescription = screen.title
+                                )
+                            },
+                            label = { Text(screen.title) },
+                            alwaysShowLabel = true, // As seen in your screenshot
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.primary, // Color for selected icon
+                                selectedTextColor = MaterialTheme.colorScheme.primary, // Color for selected text
+                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                indicatorColor = Color.Companion.Transparent // Or your choice for indicator
+                            )
+                        )
+                    }
                 }
             }
-        }
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Screen.Portfolio.route, // Your initial screen
-            modifier = Modifier.Companion.padding(innerPadding)
-        ) {
-            composable(Screen.Expenses.route) { ExpensesScreen() }
-            composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
-            composable(Screen.Portfolio.route) { PortfolioScreen() }
-            composable(Screen.Market.route) { MarketScreen() }
-            composable(Screen.Settings.route) { SettingsScreen() }
-            // Add other composable routes here if needed
+        ) { innerPadding ->
+            NavHost(
+                navController = navController,
+                startDestination = Screen.Portfolio.route, // Your initial screen
+                modifier = Modifier.Companion.padding(innerPadding)
+            ) {
+                composable(Screen.Expenses.route) { ExpensesScreen() }
+                composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
+                composable(Screen.Portfolio.route) { PortfolioScreen() }
+                composable(Screen.Market.route) { MarketScreen() }
+                composable(Screen.Settings.route) { SettingsScreen(useDynamicTheme.value, onToggleDynamicTheme = { useDynamicTheme.value = it }) }
+                // Add other composable routes here if needed
+            }
         }
     }
 }
