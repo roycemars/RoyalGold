@@ -16,20 +16,8 @@ configurations.all {
     }
 }
 
-// Function to safely load properties from local.properties
-fun getApiKey(propertyKey: String): String? {
-    val properties = Properties() // Use java.util.Properties
-    val localPropertiesFile = rootProject.file("local.properties") // Access local.properties at rootProject level
-    return if (localPropertiesFile.exists()) {
-        FileInputStream(localPropertiesFile).use { fis -> // Use try-with-resources for safely closing the stream
-            properties.load(fis)
-        }
-        properties.getProperty(propertyKey)
-    } else {
-        // Optionally, try to get from environment variables for CI/CD
-        System.getenv(propertyKey)
-    }
-}
+//val coinMarketCapApiKey: String by project
+val coinMarketCapApiKey = project.findProperty("API_KEY") as? String ?: ""
 
 android {
     namespace = "com.roycemars.royalgold"
@@ -44,14 +32,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        defaultConfig {
-            // ...
-            val geminiApiKey = getApiKey("GEMINI_API_KEY")
-            buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
-
-            val cmcApiKey = getApiKey("CMC_PRO_API_KEY")
-            buildConfigField("String", "CMC_PRO_API_KEY", "\"$cmcApiKey\"")
-        }
+        buildConfigField("String", "COINMARKETCAP_API_KEY", "\"$coinMarketCapApiKey\"")
     }
 
     buildTypes {
@@ -61,15 +42,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // For release builds, you might want to ensure the key is present
-            // val geminiApiKeyRelease = getApiKey("GEMINI_API_KEY")
-            // if (geminiApiKeyRelease == null) {
-            //     throw GradleException("GEMINI_API_KEY not found for release build.")
-            // }
-            // buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKeyRelease\"")
         }
         debug {
-            // You can have different logic for debug, e.g., allow a missing key
         }
     }
     compileOptions {
