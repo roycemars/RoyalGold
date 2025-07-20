@@ -1,13 +1,8 @@
-package com.roycemars.royalgold.data.scanner
+package com.roycemars.royalgold.core.ai
 
 import android.util.Base64
 import android.util.Log
 import com.roycemars.royalgold.BuildConfig
-import com.roycemars.royalgold.data.network.gemini.ContentRequest
-import com.roycemars.royalgold.data.network.gemini.GeminiRequest
-import com.roycemars.royalgold.data.network.gemini.InlineData
-import com.roycemars.royalgold.data.network.gemini.PartRequest
-import com.roycemars.royalgold.data.network.gemini.GeminiRetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject

@@ -1,8 +1,8 @@
-package com.roycemars.royalgold.data
+package com.roycemars.royalgold.app
 
 import android.content.Context
-import com.roycemars.royalgold.data.news.NewsRepository
-import com.roycemars.royalgold.data.news.impl.MockNewsRepository
+import com.roycemars.royalgold.feature.market.data.NewsRepository
+import com.roycemars.royalgold.feature.market.data.impl.MockNewsRepository
 
 /**
  * Dependency Injection container at the application level.

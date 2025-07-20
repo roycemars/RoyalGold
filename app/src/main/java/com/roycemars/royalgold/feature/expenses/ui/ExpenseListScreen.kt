@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.roycemars.royalgold.core.ui.theme.Gold
+import com.example.compose.primaryLight
 
 /**
  * TODO: Implement list of expenses backed with database and camerax scanner for receipts
@@ -33,7 +33,7 @@ fun ExpenseListScreen(
             onClick = {
                 Log.d(TAG, "FAB clicked")
                       },
-            containerColor = Gold
+            containerColor = primaryLight
         ) {
             Icon(Icons.Filled.Camera, contentDescription = "Add")
         }

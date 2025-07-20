@@ -29,9 +29,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.compose.AppTheme
 import com.roycemars.royalgold.app.navigation.Screen
 import com.roycemars.royalgold.app.navigation.bottomNavItems
-import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
 import com.roycemars.royalgold.feature.budget.ui.BudgetScreen
 import com.roycemars.royalgold.feature.expenses.ui.ExpenseListScreen
 import com.roycemars.royalgold.feature.market.ui.NewsScreen
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            RoyalGoldTheme {
+            AppTheme {
                 MainScreen()
             }
         }
@@ -135,7 +135,7 @@ fun MainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    RoyalGoldTheme(darkTheme = true) { // Explicitly use dark theme for this preview
+    AppTheme(darkTheme = true) { // Explicitly use dark theme for this preview
         MainScreen()
     }
 }

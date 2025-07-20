@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.data.network.gemini
+package com.roycemars.royalgold.core.ai
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

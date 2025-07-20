@@ -1,7 +1,7 @@
 package com.roycemars.royalgold.feature.market.ui
 
-import com.roycemars.royalgold.data.network.news.RetrofitClient
-import com.roycemars.royalgold.data.news.CmcNewsArticle
+import com.roycemars.royalgold.core.network.RetrofitClient
+import com.roycemars.royalgold.feature.market.data.CmcNewsArticle
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

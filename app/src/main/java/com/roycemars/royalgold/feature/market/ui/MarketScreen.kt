@@ -1,9 +1,8 @@
 package com.roycemars.royalgold.feature.market.ui
 
 import android.annotation.SuppressLint
-import com.roycemars.royalgold.data.news.CmcAssetMentioned
-import com.roycemars.royalgold.data.news.CmcNewsArticle
-import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
+import com.roycemars.royalgold.feature.market.data.CmcAssetMentioned
+import com.roycemars.royalgold.feature.market.data.CmcNewsArticle
 import kotlinx.coroutines.flow.StateFlow
 import android.content.Intent
 import android.net.Uri
@@ -34,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.example.compose.AppTheme
 import com.roycemars.royalgold.R // For placeholder image
 import kotlinx.coroutines.Dispatchers
 import java.text.SimpleDateFormat
@@ -256,7 +256,7 @@ fun NewsArticleCard(article: CmcNewsArticle) {
 @Composable
 fun NewsScreenPreview() {
     // You'd ideally use a fake ViewModel or pass a preview state for better previews
-    RoyalGoldTheme(true) { // Assuming a dark theme for preview
+    AppTheme(true) { // Assuming a dark theme for preview
         NewsScreen()
     }
 }
@@ -280,7 +280,7 @@ fun NewsArticleCardPreview() {
             CmcAssetMentioned(1027, "Ethereum", "ETH", "ethereum")
         )
     )
-    RoyalGoldTheme(true) {
+    AppTheme(true) {
         Box(modifier = Modifier.padding(16.dp)) {
             NewsArticleCard(article = sampleArticle)
         }

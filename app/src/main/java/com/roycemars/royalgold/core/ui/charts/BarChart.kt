@@ -24,10 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
-// Import your new colors if defined in Color.kt
-import com.roycemars.royalgold.core.ui.theme.LightBlueGridLine
-import com.roycemars.royalgold.core.ui.theme.ChartLightBackground
+import com.example.compose.AppTheme
+import com.example.compose.primaryContainerLight
+import com.example.compose.primaryLight
 
 data class BarData(
     val value: Float,
@@ -35,6 +34,9 @@ data class BarData(
     val amountText: String,
     val color: Color
 )
+
+val ChartLightBackground = primaryContainerLight
+var LightBlueGridLine = primaryLight
 
 @Composable
 fun BarChart(
@@ -184,7 +186,7 @@ fun BarChart(darkTheme: Boolean = isSystemInDarkTheme()) { // Pass darkTheme to 
 @Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun BarChartPreviewLight() {
-    RoyalGoldTheme(darkTheme = false) { // Explicitly set light theme
+    AppTheme(darkTheme = false) { // Explicitly set light theme
         BarChart(darkTheme = false)
     }
 }
@@ -192,7 +194,7 @@ fun BarChartPreviewLight() {
 @Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BarChartPreviewDark() {
-    RoyalGoldTheme(darkTheme = true) { // Explicitly set dark theme
+    AppTheme(darkTheme = true) { // Explicitly set dark theme
         BarChart(darkTheme = true)
     }
 }

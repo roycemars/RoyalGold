@@ -2,8 +2,6 @@ package com.roycemars.royalgold.app
 
 import android.app.Application
 import android.util.Log
-import com.roycemars.royalgold.data.AppContainer
-import com.roycemars.royalgold.data.AppContainerImpl
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

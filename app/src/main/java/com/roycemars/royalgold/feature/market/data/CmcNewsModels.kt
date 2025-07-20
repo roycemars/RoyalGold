@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.data.news
+package com.roycemars.royalgold.feature.market.data
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,7 +1,7 @@
-package com.roycemars.royalgold.data.network.news
+package com.roycemars.royalgold.core.network
 
-import com.roycemars.royalgold.data.news.CmcBaseResponse
-import com.roycemars.royalgold.data.news.CmcContentLatestData
+import com.roycemars.royalgold.feature.market.data.CmcBaseResponse
+import com.roycemars.royalgold.feature.market.data.CmcContentLatestData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

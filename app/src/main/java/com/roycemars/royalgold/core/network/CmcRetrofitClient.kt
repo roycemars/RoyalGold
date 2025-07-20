@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.data.network.news
+package com.roycemars.royalgold.core.network
 
 import android.util.Log
 import com.roycemars.royalgold.BuildConfig // If storing API key in BuildConfig (for debug ONLY)
