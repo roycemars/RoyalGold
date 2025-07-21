@@ -1,5 +1,6 @@
 package com.roycemars.royalgold.core.ui.activity
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -39,6 +43,8 @@ import com.roycemars.royalgold.feature.market.ui.MarketScreen
 import com.roycemars.royalgold.feature.portfolio.ui.PortfolioScreen
 import com.roycemars.royalgold.feature.settings.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.Flow
+import java.util.prefs.Preferences
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -56,6 +62,7 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     val navController = rememberNavController()
     var currentScreenTitle by remember { mutableStateOf(Screen.Expenses.title) }
+
     val useDynamicTheme = rememberSaveable { mutableStateOf(false) }
 
     AppTheme(dynamicColor = useDynamicTheme.value) {

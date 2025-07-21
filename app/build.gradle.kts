@@ -83,6 +83,7 @@ dependencies {
         exclude(group = "com.intellij", module = "annotations")
     }
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.datastore.core.android)
     ksp(libs.androidx.room.compiler) // Use ksp for the compiler
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -124,6 +125,8 @@ dependencies {
 
     // Hilt ViewModel integration
     implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.androidx.datastore.preferences)
 }
 
 kapt {
