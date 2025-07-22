@@ -15,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.roycemars.royalgold.core.ui.theme.onPrimaryContainerDark
+import com.roycemars.royalgold.core.ui.theme.primaryContainerDark
 import com.roycemars.royalgold.core.ui.theme.primaryLight
 
 /**
@@ -33,7 +35,8 @@ fun ExpensesScreen(
             onClick = {
                 Log.d(TAG, "FAB clicked")
                       },
-            containerColor = primaryLight
+            containerColor = primaryContainerDark,
+            contentColor = onPrimaryContainerDark
         ) {
             Icon(Icons.Filled.Camera, contentDescription = "Add")
         }
