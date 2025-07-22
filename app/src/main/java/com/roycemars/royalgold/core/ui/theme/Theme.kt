@@ -53,8 +53,8 @@ private val lightScheme = lightColorScheme(
 )
 
 private val darkScheme = darkColorScheme(
-    primary = primaryContainerDark, //primaryDark,
-    onPrimary = onPrimaryContainerDark, //onPrimaryDark,
+    primary = primaryDark,
+    onPrimary = onPrimaryDark,
     primaryContainer = primaryContainerDark,
     onPrimaryContainer = onPrimaryContainerDark,
     secondary = secondaryDark,

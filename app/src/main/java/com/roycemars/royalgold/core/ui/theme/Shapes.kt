@@ -1,7 +1,5 @@
 package com.roycemars.royalgold.core.ui.theme
 
-// In app/src/main/java/com/roycemars/royalgold/ui/theme/Shape.kt
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
