@@ -14,6 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 
+@Immutable
+data class ExtendedColorScheme(
+    val papayaOrange: ColorFamily,
+    val anthracite: ColorFamily,
+)
+
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
@@ -240,6 +246,96 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainer = surfaceContainerDarkHighContrast,
     surfaceContainerHigh = surfaceContainerHighDarkHighContrast,
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
+)
+
+val extendedLight = ExtendedColorScheme(
+  papayaOrange = ColorFamily(
+  papayaOrangeLight,
+  onPapayaOrangeLight,
+  papayaOrangeContainerLight,
+  onPapayaOrangeContainerLight,
+  ),
+  anthracite = ColorFamily(
+  anthraciteLight,
+  onAnthraciteLight,
+  anthraciteContainerLight,
+  onAnthraciteContainerLight,
+  ),
+)
+
+val extendedDark = ExtendedColorScheme(
+  papayaOrange = ColorFamily(
+  papayaOrangeDark,
+  onPapayaOrangeDark,
+  papayaOrangeContainerDark,
+  onPapayaOrangeContainerDark,
+  ),
+  anthracite = ColorFamily(
+  anthraciteDark,
+  onAnthraciteDark,
+  anthraciteContainerDark,
+  onAnthraciteContainerDark,
+  ),
+)
+
+val extendedLightMediumContrast = ExtendedColorScheme(
+  papayaOrange = ColorFamily(
+  papayaOrangeLightMediumContrast,
+  onPapayaOrangeLightMediumContrast,
+  papayaOrangeContainerLightMediumContrast,
+  onPapayaOrangeContainerLightMediumContrast,
+  ),
+  anthracite = ColorFamily(
+  anthraciteLightMediumContrast,
+  onAnthraciteLightMediumContrast,
+  anthraciteContainerLightMediumContrast,
+  onAnthraciteContainerLightMediumContrast,
+  ),
+)
+
+val extendedLightHighContrast = ExtendedColorScheme(
+  papayaOrange = ColorFamily(
+  papayaOrangeLightHighContrast,
+  onPapayaOrangeLightHighContrast,
+  papayaOrangeContainerLightHighContrast,
+  onPapayaOrangeContainerLightHighContrast,
+  ),
+  anthracite = ColorFamily(
+  anthraciteLightHighContrast,
+  onAnthraciteLightHighContrast,
+  anthraciteContainerLightHighContrast,
+  onAnthraciteContainerLightHighContrast,
+  ),
+)
+
+val extendedDarkMediumContrast = ExtendedColorScheme(
+  papayaOrange = ColorFamily(
+  papayaOrangeDarkMediumContrast,
+  onPapayaOrangeDarkMediumContrast,
+  papayaOrangeContainerDarkMediumContrast,
+  onPapayaOrangeContainerDarkMediumContrast,
+  ),
+  anthracite = ColorFamily(
+  anthraciteDarkMediumContrast,
+  onAnthraciteDarkMediumContrast,
+  anthraciteContainerDarkMediumContrast,
+  onAnthraciteContainerDarkMediumContrast,
+  ),
+)
+
+val extendedDarkHighContrast = ExtendedColorScheme(
+  papayaOrange = ColorFamily(
+  papayaOrangeDarkHighContrast,
+  onPapayaOrangeDarkHighContrast,
+  papayaOrangeContainerDarkHighContrast,
+  onPapayaOrangeContainerDarkHighContrast,
+  ),
+  anthracite = ColorFamily(
+  anthraciteDarkHighContrast,
+  onAnthraciteDarkHighContrast,
+  anthraciteContainerDarkHighContrast,
+  onAnthraciteContainerDarkHighContrast,
+  ),
 )
 
 @Immutable
