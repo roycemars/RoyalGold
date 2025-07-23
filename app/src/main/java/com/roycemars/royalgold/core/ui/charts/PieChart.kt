@@ -23,6 +23,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.roycemars.royalgold.core.ui.theme.AppTheme
+import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
+import com.roycemars.royalgold.core.ui.theme.primaryDark
+import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 
 // Define your colors (extract these from the screenshot or your theme)
 val OrangeSegment = Color(0xFFFFA726) // Approximate
@@ -111,7 +114,7 @@ fun PieChart(modifier: Modifier = Modifier) {
     val totalExpenses = segments.sumOf { it.value.toDouble() }.toFloat()
     // Find the segment with the highest value for the center display
     val largestSegment = segments.maxByOrNull { it.value } ?: segments.first()
-    val cardBackgroundColor = MaterialTheme.colorScheme.surfaceVariant
+    val cardBackgroundColor = tertiaryContainerDark //  MaterialTheme.colorScheme.surfaceVariant
 
     Card(
         modifier = modifier
@@ -125,7 +128,7 @@ fun PieChart(modifier: Modifier = Modifier) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "EXPENSES",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR (or onSurfaceSecondary if defined)
+                    color = onTertiaryContainerDark, // MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR (or onSurfaceSecondary if defined)
                     style = MaterialTheme.typography.labelSmall, // Use theme typography
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
@@ -154,7 +157,7 @@ fun PieChart(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .size(60.dp) // Adjust size of the inner circle icon background
                         .background(
-                            MaterialTheme.colorScheme.surfaceVariant, // USE THEME COLOR (was CenterCircleBackground)
+                            tertiaryContainerDark, //  //MaterialTheme.colorScheme.surfaceVariant, // USE THEME COLOR (was CenterCircleBackground)
                             shape = CircleShape
                         )
                         .padding(8.dp),
@@ -170,13 +173,13 @@ fun PieChart(modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = "$%,.0f".format(largestSegment.value), // Formatted value
-                    color = MaterialTheme.colorScheme.onSurface, // USE THEME COLOR (was TextPrimaryDark)
+                    color = primaryDark,
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = largestSegment.name.uppercase(),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR (was TextSecondaryDark)
+                    color = primaryDark,
                     fontSize = 12.sp,
                     letterSpacing = 0.5.sp
                 )

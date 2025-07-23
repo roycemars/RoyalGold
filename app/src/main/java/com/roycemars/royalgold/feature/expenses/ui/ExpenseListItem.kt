@@ -21,6 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
+import com.roycemars.royalgold.core.ui.theme.primaryDark
+import com.roycemars.royalgold.core.ui.theme.primaryLight
+import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 import com.roycemars.royalgold.feature.expenses.domain.ExpenseItem
 
 @Composable
@@ -30,7 +34,7 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
             .fillMaxWidth()
             .padding(vertical = 6.dp, horizontal = 16.dp),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = tertiaryContainerDark)
     ) {
         Row(
             modifier = Modifier.Companion
@@ -41,15 +45,15 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
         ) {
             Column(modifier = Modifier.Companion.weight(1f)) {
                 Text(
-                    text = item.name.uppercase(), // As per screenshot
+                    text = item.name.uppercase(),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                    color = primaryDark.copy(alpha = 0.7f)
                 )
                 Text(
                     text = item.amount,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Companion.Bold,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = primaryDark
                 )
                 if (item.goal != null && item.progress != null) {
                     Spacer(modifier = Modifier.Companion.height(8.dp))
@@ -66,13 +70,13 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                         Text(
                             "Goal:",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                            color = primaryLight.copy(alpha = 0.6f)
                         )
                         Text(
                             item.goal,
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.Companion.SemiBold,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                            color = primaryLight.copy(alpha = 0.8f)
                         )
                     }
                 }
@@ -81,7 +85,7 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                 imageVector = item.icon,
                 contentDescription = item.name,
                 modifier = Modifier.Companion.size(36.dp),
-                tint = MaterialTheme.colorScheme.secondary
+                tint = primaryDark // onTertiaryContainerDark
             )
         }
     }

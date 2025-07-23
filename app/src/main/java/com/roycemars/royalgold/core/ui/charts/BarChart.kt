@@ -25,8 +25,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.roycemars.royalgold.core.ui.theme.AppTheme
+import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
 import com.roycemars.royalgold.core.ui.theme.primaryContainerLight
+import com.roycemars.royalgold.core.ui.theme.primaryDark
 import com.roycemars.royalgold.core.ui.theme.primaryLight
+import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 
 data class BarData(
     val value: Float,
@@ -35,8 +38,8 @@ data class BarData(
     val color: Color
 )
 
-val ChartLightBackground = primaryContainerLight
-var LightBlueGridLine = primaryLight
+val ChartLightBackground = tertiaryContainerDark
+var LightBlueGridLine = onTertiaryContainerDark
 
 @Composable
 fun BarChart(
@@ -56,20 +59,21 @@ fun BarChart(
     val labelTextColor: Color
     val amountTextColor: Color
 
+//    TODO: replace dark colors with MaterialTheme.colorScheme when light theme designed
     if (darkTheme) {
         // Dark theme colors (as previously defined or from MaterialTheme)
-        cardBackgroundColor = MaterialTheme.colorScheme.surfaceVariant
-        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        cardBackgroundColor = tertiaryContainerDark
+        contentColor = primaryDark
         gridLineColorForChart = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
         labelTextColor = contentColor
         amountTextColor = contentColor
     } else {
         // Light theme specific colors for the chart
-        cardBackgroundColor = ChartLightBackground // White background for the card
-        contentColor = MaterialTheme.colorScheme.onBackground // Text on white
-        gridLineColorForChart = LightBlueGridLine    // Light blue grid lines
-        labelTextColor = contentColor // Or a specific color like Color.Black
-        amountTextColor = contentColor // Or a specific color like Color.Black
+        cardBackgroundColor = tertiaryContainerDark
+        contentColor = primaryDark
+        gridLineColorForChart = LightBlueGridLine
+        labelTextColor = contentColor
+        amountTextColor = contentColor
     }
 
     Card(
@@ -95,7 +99,7 @@ fun BarChart(
                     val stepSize = size.height / (gridLineCount + 1)
                     for (i in 1..gridLineCount) {
                         drawLine(
-                            color = gridLineColorForChart, // Use the determined grid line color
+                            color = gridLineColorForChart,
                             start = Offset(0f, stepSize * i),
                             end = Offset(size.width, stepSize * i),
                             strokeWidth = 1.dp.toPx(),

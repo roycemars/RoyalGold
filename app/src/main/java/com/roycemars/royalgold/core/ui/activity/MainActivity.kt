@@ -24,6 +24,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
@@ -37,6 +39,8 @@ import androidx.navigation.compose.rememberNavController
 import com.roycemars.royalgold.app.navigation.Screen
 import com.roycemars.royalgold.app.navigation.bottomNavItems
 import com.roycemars.royalgold.core.ui.theme.AppTheme
+import com.roycemars.royalgold.core.ui.theme.onPrimaryDark
+import com.roycemars.royalgold.core.ui.theme.primaryDark
 import com.roycemars.royalgold.feature.budget.ui.BudgetScreen
 import com.roycemars.royalgold.feature.expenses.ui.ExpensesScreen
 import com.roycemars.royalgold.feature.market.ui.MarketScreen
@@ -69,16 +73,16 @@ fun MainScreen() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(currentScreenTitle) }, // Dynamic title
+                    title = { Text(currentScreenTitle )  },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary, // Or your desired color
+                        containerColor = MaterialTheme.colorScheme.primary,
                         titleContentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 )
             },
             bottomBar = {
                 NavigationBar(
-                    containerColor = MaterialTheme.colorScheme.surface, // Or your specific bottom bar color
+                    containerColor = MaterialTheme.colorScheme.surface,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                 ) {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -114,8 +118,8 @@ fun MainScreen() {
                             label = { Text(screen.title) },
                             alwaysShowLabel = true, // As seen in your screenshot
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = MaterialTheme.colorScheme.primary, // Color for selected icon
-                                selectedTextColor = MaterialTheme.colorScheme.primary, // Color for selected text
+                                selectedIconColor = MaterialTheme.colorScheme.primary,
+                                selectedTextColor = MaterialTheme.colorScheme.primary,
                                 unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                                 unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
                                 indicatorColor = Color.Companion.Transparent // Or your choice for indicator

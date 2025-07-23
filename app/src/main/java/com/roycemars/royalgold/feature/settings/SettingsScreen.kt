@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.roycemars.royalgold.core.ui.theme.primaryDark
 
 @Composable
 fun SettingsScreen(
@@ -19,10 +20,10 @@ fun SettingsScreen(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Use Dynamic Theme", modifier = Modifier.weight(1f))
+                Text(text = "Use Dynamic Theme", modifier = Modifier.weight(1f), color = primaryDark)
                 Switch(
                     checked = useDynamicTheme,
-                    onCheckedChange = { onToggleDynamicTheme(it) }
+                    onCheckedChange = { onToggleDynamicTheme(it) },
                 )
             }
         }

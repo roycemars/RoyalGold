@@ -39,6 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.roycemars.royalgold.core.ui.theme.AppTheme
+import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
+import com.roycemars.royalgold.core.ui.theme.primaryDark
+import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 import kotlin.random.Random
 
 /**
@@ -61,7 +64,7 @@ fun LineChartCard(
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = Color(0xFF2C2B3C) // Dark purple-ish background from screenshot
+            containerColor = tertiaryContainerDark
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
@@ -82,7 +85,7 @@ fun LineChartCard(
                         CircleShape
                     ) // Placeholder for icon background
                     .padding(8.dp),
-                tint = Color.White // Or a specific icon tint
+                tint = primaryDark
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -92,14 +95,14 @@ fun LineChartCard(
                 text = currentPrice,
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimaryContainer // Assuming onPrimaryContainer is light on this dark bg
+                color = primaryDark
             )
 
             // Asset Name
             Text(
                 text = assetName,
                 fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                color = primaryDark.copy(alpha = 0.7f)
             )
 
             Spacer(modifier = Modifier.height(24.dp))
