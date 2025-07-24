@@ -9,11 +9,12 @@ import coil.network.HttpException
 import com.roycemars.royalgold.feature.market.data.local.CryptoDatabase
 import com.roycemars.royalgold.feature.market.data.local.CryptoEntity
 import com.roycemars.royalgold.feature.market.data.mappers.toCryptoEntity
+import kotlinx.coroutines.delay
 import okio.IOException
 
 @OptIn(ExperimentalPagingApi::class)
 class CryptoRemoteMediator(
-    private val cryptoDb: CryptoDatabase,
+    private val cryptoDatabase: CryptoDatabase,
     private val cryptoApi: CryptoApi
 ): RemoteMediator<Int, CryptoEntity>() {
 
@@ -35,17 +36,18 @@ class CryptoRemoteMediator(
                 }
             }
 
+            delay(2000L)
             val cryptoListings = cryptoApi.getListings(
                 start = loadKey,
                 limit = state.config.pageSize
             )
 
-            cryptoDb.withTransaction {
+            cryptoDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    cryptoDb.dao.clearAll()
+                    cryptoDatabase.dao.clearAll()
                 }
                 val cryptoEntities = cryptoListings.map {  it.toCryptoEntity() }
-                cryptoDb.dao.upsertAll(cryptoEntities)
+                cryptoDatabase.dao.upsertAll(cryptoEntities)
             }
 
             MediatorResult.Success(endOfPaginationReached = cryptoListings.isEmpty())

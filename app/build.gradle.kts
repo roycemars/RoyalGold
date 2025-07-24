@@ -130,6 +130,13 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.androidx.datastore.preferences)
+
+    // Add Gson core library
+    implementation(libs.gson) // Or the latest version
+
+    // Add Retrofit Gson converter
+    implementation(libs.converter.gson) // Or the version matching your Retrofit version (libs.converter.gson)
+
 }
 
 kapt {

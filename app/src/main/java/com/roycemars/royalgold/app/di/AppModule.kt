@@ -1,9 +1,9 @@
 package com.roycemars.royalgold.app.di
 
-import com.roycemars.royalgold.feature.expenses.data.ExpenseItemsRepository
-import com.roycemars.royalgold.feature.expenses.data.ExpenseItemsRepositoryMockImpl
 import com.roycemars.royalgold.feature.expenses.camera.ReceiptScanner
 import com.roycemars.royalgold.feature.expenses.camera.ReceiptScannerImpl
+import com.roycemars.royalgold.feature.expenses.data.ExpenseItemsRepository
+import com.roycemars.royalgold.feature.expenses.data.ExpenseItemsRepositoryMockImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

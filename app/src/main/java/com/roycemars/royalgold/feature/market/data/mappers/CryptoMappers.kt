@@ -14,7 +14,7 @@ fun CryptoDto.toCryptoEntity(): CryptoEntity {
         name = name,
         symbol = symbol,
         price = price,
-        lastUpdated = TimeConverter.isoStringToLong(last_updated) ?: 0
+        lastUpdated = TimeConverter.isoStringToLong(lastUpdated) ?: 0
     )
 }
 
