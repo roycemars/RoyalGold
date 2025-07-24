@@ -1,5 +1,6 @@
 package com.roycemars.royalgold.feature.market.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,7 +31,8 @@ fun CryptoItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(crypto.symbol)
             Text(crypto.price.toString())
