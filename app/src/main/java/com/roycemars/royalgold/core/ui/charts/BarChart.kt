@@ -24,11 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.roycemars.royalgold.core.ui.theme.AppTheme
+import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
 import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
-import com.roycemars.royalgold.core.ui.theme.primaryContainerLight
 import com.roycemars.royalgold.core.ui.theme.primaryDark
-import com.roycemars.royalgold.core.ui.theme.primaryLight
 import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 
 data class BarData(
@@ -190,7 +188,7 @@ fun BarChart(darkTheme: Boolean = isSystemInDarkTheme()) { // Pass darkTheme to 
 @Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun BarChartPreviewLight() {
-    AppTheme(darkTheme = false) { // Explicitly set light theme
+    RoyalGoldTheme(darkTheme = false) { // Explicitly set light theme
         BarChart(darkTheme = false)
     }
 }
@@ -198,7 +196,7 @@ fun BarChartPreviewLight() {
 @Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BarChartPreviewDark() {
-    AppTheme(darkTheme = true) { // Explicitly set dark theme
+    RoyalGoldTheme(darkTheme = true) { // Explicitly set dark theme
         BarChart(darkTheme = true)
     }
 }

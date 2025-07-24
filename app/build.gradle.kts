@@ -28,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId = "com.roycemars.royalgold"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -79,11 +79,14 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.compiler) {
         exclude(group = "com.intellij", module = "annotations")
     }
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.androidx.datastore.core.android)
+    implementation(libs.androidx.paging.common)
+    implementation(libs.androidx.paging.compose)
     ksp(libs.androidx.room.compiler) // Use ksp for the compiler
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

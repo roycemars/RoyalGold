@@ -38,8 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.roycemars.royalgold.core.ui.theme.AppTheme
-import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
+import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
 import com.roycemars.royalgold.core.ui.theme.primaryDark
 import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 import kotlin.random.Random
@@ -206,7 +205,7 @@ fun LineChartCard() {
 @Preview(showBackground = true, widthDp = 380)
 @Composable
 fun CryptoChartCardPreview() {
-    AppTheme(darkTheme = true) { // Make sure your theme is applied
+    RoyalGoldTheme(darkTheme = true) { // Make sure your theme is applied
 
         Box(
             modifier = Modifier
