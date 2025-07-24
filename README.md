@@ -17,4 +17,4 @@ Core features/screens:
 Project is currently in active development - many features will be added soon.
 
 Interested to contribute? 
-Ping me email at roycemars@proton.me, or chat in Telegram at roycemars.t.me to collaborate
+Ping me email at roycemars@proton.me, or chat in Telegram at https://roycemars.t.me to collaborate
