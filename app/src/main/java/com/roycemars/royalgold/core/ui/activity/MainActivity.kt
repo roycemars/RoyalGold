@@ -121,15 +121,14 @@ fun MainScreen() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Screen.Portfolio.route, // Your initial screen
+                startDestination = Screen.Market.route,
                 modifier = Modifier.Companion.padding(innerPadding)
             ) {
                 composable(Screen.Expenses.route) { ExpensesScreen() }
-                composable(Screen.Budget.route) { BudgetScreen() } // Replace with your actual ChartScreen
+                composable(Screen.Budget.route) { BudgetScreen() }
                 composable(Screen.Portfolio.route) { PortfolioScreen() }
                 composable(Screen.Market.route) { MarketScreen() }
                 composable(Screen.Settings.route) { SettingsScreen(useDynamicTheme.value, onToggleDynamicTheme = { useDynamicTheme.value = it }) }
-                // Add other composable routes here if needed
             }
         }
     }
