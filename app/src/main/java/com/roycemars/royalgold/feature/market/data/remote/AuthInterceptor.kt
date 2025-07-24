@@ -10,7 +10,7 @@ class AuthInterceptor : Interceptor {
         val newRequest = originalRequest.newBuilder()
             .header("X-CMC_PRO_API_KEY", BuildConfig.COINMARKETCAP_API_KEY)
             // You can add other common headers here if needed
-            // .header("Accept", "application/json")
+             .header("Accept", "application/json")
             .build()
         return chain.proceed(newRequest)
     }

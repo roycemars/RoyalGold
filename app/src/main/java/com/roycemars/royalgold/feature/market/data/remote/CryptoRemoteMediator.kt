@@ -37,12 +37,14 @@ class CryptoRemoteMediator(
             }
 
             delay(2000L)
-            val cryptoListings = cryptoApi.getListings(
+            val cryptoListingsResponseDto = cryptoApi.getListings(
                 start = loadKey,
                 limit = state.config.pageSize
             )
 
-            cryptoDatabase.withTransaction {
+            val cryptoListings = cryptoListingsResponseDto.data
+
+                cryptoDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     cryptoDatabase.dao.clearAll()
                 }

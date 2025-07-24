@@ -13,7 +13,7 @@ interface CryptoApi {
     suspend fun getListings(
         @Query("start") start: Int,
         @Query("limit") limit: Int,
-    ): List<CryptoDto>
+    ): CryptoListingsResponseDto
 
     companion object {
         const val BASE_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/"
