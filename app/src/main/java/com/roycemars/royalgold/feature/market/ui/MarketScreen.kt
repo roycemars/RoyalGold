@@ -59,6 +59,9 @@ fun MarketScreen(
                 ),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                stickyHeader {
+                    HeaderCard(modifier = Modifier.fillMaxWidth())
+                }
                 items(cryptoListings.itemCount) { index ->
 
                     val crypto = cryptoListings[index]

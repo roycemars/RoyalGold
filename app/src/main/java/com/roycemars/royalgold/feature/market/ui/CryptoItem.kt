@@ -48,6 +48,26 @@ fun CryptoItem(
     }
 }
 
+@Composable
+fun HeaderCard(modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text("Symbol", fontWeight = FontWeight.Bold)
+            Text("Price", fontWeight = FontWeight.Bold)
+            Text("1h", fontWeight = FontWeight.Bold)
+            Text("24h", fontWeight = FontWeight.Bold)
+        }
+    }
+}
+
 @SuppressLint("DefaultLocale")
 @Composable
 fun ticker(inPercentChange: Double?) {
@@ -96,5 +116,13 @@ fun CryptoItemPreview() {
             ),
             modifier = Modifier.fillMaxWidth()
         )
+    }
+}
+
+@Preview
+@Composable
+fun HeaderCardPreview() {
+    RoyalGoldTheme {
+        HeaderCard()
     }
 }
