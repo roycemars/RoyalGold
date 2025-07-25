@@ -8,6 +8,7 @@ import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.roycemars.royalgold.BuildConfig
+import com.roycemars.royalgold.feature.market.data.local.CryptoDao
 import com.roycemars.royalgold.feature.market.data.local.CryptoDatabase
 import com.roycemars.royalgold.feature.market.data.local.CryptoEntity
 import com.roycemars.royalgold.feature.market.data.remote.AuthInterceptor
@@ -35,7 +36,14 @@ object CryptoModule {
             context = context,
             klass = CryptoDatabase::class.java,
             name = "crypto.db"
-        ).build()
+        )
+            .addMigrations(CryptoDatabase.MIGRATION_1_2)
+            .build()
+    }
+
+    @Provides
+    fun provideCryptoDao(database: CryptoDatabase): CryptoDao {
+        return database.dao
     }
 
     @Provides

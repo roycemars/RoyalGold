@@ -30,7 +30,7 @@ fun MarketScreen(
 
     val currentItemsSnapshot = cryptoListings.itemSnapshotList
     for (item in currentItemsSnapshot) {
-        Log.d("MarketScreenDebug", "Item: ${item?.symbol}")
+        Log.d("MarketScreenDebug", "Item: ${item?.symbol}, ${item?.price} ${item?.percentChange1h} ${item?.percentChange24h}")
     }
 
     val context = LocalContext.current

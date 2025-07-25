@@ -1,0 +1,14 @@
+package com.roycemars.royalgold.feature.market.data.remote
+
+import com.google.gson.annotations.SerializedName
+
+data class quoteDataDto(
+    @SerializedName("percent_change_1h")
+    val percentChange1h: Double,
+    @SerializedName("percent_change_24h")
+    val percentChange24h: Double,
+    @SerializedName("percent_change_7d")
+    val percentChange7d: Double,
+    @SerializedName("percent_change_30d")
+    val percentChange30d: Double
+)
