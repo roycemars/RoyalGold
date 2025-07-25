@@ -41,7 +41,7 @@ fun CryptoItem(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(crypto.symbol, fontWeight = FontWeight.Bold)
-            Text(crypto.price.toString(), fontWeight = FontWeight.Bold)
+            Text(text = String.format("%.2f", crypto.price), fontWeight = FontWeight.Bold)
             ticker(crypto.percentChange1h)
             ticker(crypto.percentChange24h)
         }

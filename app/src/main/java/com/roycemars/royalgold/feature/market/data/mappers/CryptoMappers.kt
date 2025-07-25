@@ -13,7 +13,7 @@ fun CryptoDto.toCryptoEntity(): CryptoEntity {
         id = id,
         name = name,
         symbol = symbol,
-        price = price,
+        price = quote?.usd?.price ?: 0.0,
         percentChange1h = quote?.usd?.percentChange1h ?: 0.0,
         percentChange24h = quote?.usd?.percentChange24h ?: 0.0,
         percentChange7d = quote?.usd?.percentChange7d ?: 0.0,
