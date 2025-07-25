@@ -53,8 +53,8 @@ sealed class Screen(
 
 val bottomNavItems = listOf(
     Screen.Portfolio,
-    Screen.Budget,
-    Screen.Expenses,
     Screen.Market,
+    Screen.Expenses,
+    Screen.Budget,
     Screen.Settings
 )

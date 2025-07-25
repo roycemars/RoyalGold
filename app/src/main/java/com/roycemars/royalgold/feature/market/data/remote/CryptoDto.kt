@@ -7,7 +7,7 @@ data class CryptoDto(
     val name: String,
     val symbol: String,
     val price: Double,
-
     @SerializedName("last_updated")
-    val lastUpdated: String
+    val lastUpdated: String,
+    val quote: usdQuoteDataDto?
 )

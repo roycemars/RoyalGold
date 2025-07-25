@@ -124,10 +124,10 @@ fun MainScreen() {
                 startDestination = Screen.Market.route,
                 modifier = Modifier.Companion.padding(innerPadding)
             ) {
-                composable(Screen.Expenses.route) { ExpensesScreen() }
-                composable(Screen.Budget.route) { BudgetScreen() }
                 composable(Screen.Portfolio.route) { PortfolioScreen() }
                 composable(Screen.Market.route) { MarketScreen() }
+                composable(Screen.Expenses.route) { ExpensesScreen() }
+                composable(Screen.Budget.route) { BudgetScreen() }
                 composable(Screen.Settings.route) { SettingsScreen(useDynamicTheme.value, onToggleDynamicTheme = { useDynamicTheme.value = it }) }
             }
         }

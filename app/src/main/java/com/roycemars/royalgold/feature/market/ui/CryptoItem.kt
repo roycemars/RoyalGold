@@ -1,24 +1,30 @@
 package com.roycemars.royalgold.feature.market.ui
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
 import com.roycemars.royalgold.feature.market.domain.Crypto
 import java.util.Calendar
-import java.util.Date
-import kotlin.Int
 import kotlin.String
+import kotlin.text.format
 
+@SuppressLint("DefaultLocale")
 @Composable
 fun CryptoItem(
     crypto: Crypto,
@@ -34,9 +40,36 @@ fun CryptoItem(
                 .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(crypto.symbol)
-            Text(crypto.price.toString())
+            Text(crypto.symbol, fontWeight = FontWeight.Bold)
+            Text(crypto.price.toString(), fontWeight = FontWeight.Bold)
+            ticker(crypto.percentChange1h)
+            ticker(crypto.percentChange24h)
         }
+    }
+}
+
+@SuppressLint("DefaultLocale")
+@Composable
+fun ticker(inPercentChange: Double?) {
+    val percentChange = inPercentChange ?: 0.0 // Handle null
+    val backgroundColor = when {
+        percentChange < 0 -> Color.Red.copy(alpha = 0.7f)
+        percentChange > 0 -> Color.Green.copy(alpha = 0.7f)
+        else -> Color.Transparent
+    }
+    val textColor = if (percentChange != 0.0) Color.White else Color.Black
+
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(4.dp))
+            .background(backgroundColor)
+            .padding(horizontal = 6.dp, vertical = 2.dp)
+    ) {
+        Text(
+            text = "${String.format("%.2f", percentChange)}%",
+            fontWeight = FontWeight.Bold,
+            color = textColor
+        )
     }
 }
 
@@ -55,6 +88,10 @@ fun CryptoItemPreview() {
                 name = "Bitcoin",
                 symbol = "BTC",
                 price = 118000.0,
+                percentChange1h = -2.0,
+                percentChange24h = 5.0,
+                percentChange7d = 20.0,
+                percentChange30d = 30.0,
                 lastUpdated = dateInMillis
             ),
             modifier = Modifier.fillMaxWidth()

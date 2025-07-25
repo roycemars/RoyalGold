@@ -14,6 +14,10 @@ fun CryptoDto.toCryptoEntity(): CryptoEntity {
         name = name,
         symbol = symbol,
         price = price,
+        percentChange1h = quote?.usd?.percentChange1h ?: 0.0,
+        percentChange24h = quote?.usd?.percentChange24h ?: 0.0,
+        percentChange7d = quote?.usd?.percentChange7d ?: 0.0,
+        percentChange30d = quote?.usd?.percentChange30d ?: 0.0,
         lastUpdated = TimeConverter.isoStringToLong(lastUpdated) ?: 0
     )
 }
@@ -24,6 +28,10 @@ fun CryptoEntity.toCrypto(): Crypto {
         name = name,
         symbol = symbol,
         price = price,
+        percentChange1h = percentChange1h ?: 0.0,
+        percentChange24h = percentChange24h ?: 0.0,
+        percentChange7d = percentChange7d ?: 0.0,
+        percentChange30d = percentChange30d ?: 0.0,
         lastUpdated = lastUpdated
     )
 }
