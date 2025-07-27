@@ -38,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.roycemars.royalgold.core.ui.theme.AppThemeIdentifier
 import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
 import com.roycemars.royalgold.core.ui.theme.primaryDark
 import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
@@ -50,7 +51,7 @@ import kotlin.random.Random
 @Composable
 fun LineChartCard(
     modifier: Modifier = Modifier,
-    assetIcon: ImageVector, // Example: Icons.Filled.CurrencyExchange
+    assetIcon: ImageVector,
     assetName: String,
     currentPrice: String,
     chartData: List<Float>,
@@ -63,7 +64,7 @@ fun LineChartCard(
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = tertiaryContainerDark
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
@@ -73,7 +74,6 @@ fun LineChartCard(
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Icon
             Icon(
                 imageVector = assetIcon,
                 contentDescription = "$assetName icon",
@@ -82,9 +82,9 @@ fun LineChartCard(
                     .background(
                         Color.White.copy(alpha = 0.1f),
                         CircleShape
-                    ) // Placeholder for icon background
+                    )
                     .padding(8.dp),
-                tint = primaryDark
+                tint = MaterialTheme.colorScheme.primary
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -94,27 +94,26 @@ fun LineChartCard(
                 text = currentPrice,
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
-                color = primaryDark
+                color = MaterialTheme.colorScheme.primary
             )
 
             // Asset Name
             Text(
                 text = assetName,
                 fontSize = 16.sp,
-                color = primaryDark.copy(alpha = 0.7f)
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
             )
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Chart Placeholder
             LineChartPlaceholder(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp),
                 data = chartData,
-                lineColor = Color(0xFF8A5DFF), // Screenshot's line color
+                lineColor = MaterialTheme.colorScheme.primary,
                 gradientFill = Brush.verticalGradient(
-                    colors = listOf(Color(0xFF8A5DFF).copy(alpha = 0.2f),
+                    colors = listOf(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
                         Color.Transparent)
                 ),
                 yAxisLabelColor = Color.White.copy(alpha = 0.5f)
@@ -205,7 +204,10 @@ fun LineChartCard() {
 @Preview(showBackground = true, widthDp = 380)
 @Composable
 fun CryptoChartCardPreview() {
-    RoyalGoldTheme(darkTheme = true) { // Make sure your theme is applied
+    RoyalGoldTheme(
+        selectedThemeIdentifier = AppThemeIdentifier.MATRIX,
+        darkTheme = true,
+        dynamicColor = false) {
 
         Box(
             modifier = Modifier
