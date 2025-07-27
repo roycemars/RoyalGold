@@ -20,7 +20,7 @@ fun SettingsScreen(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Use Dynamic Theme", modifier = Modifier.weight(1f), color = primaryDark)
+                Text(text = "Use Dynamic Theme", modifier = Modifier.weight(1f))
                 Switch(
                     checked = useDynamicTheme,
                     onCheckedChange = { onToggleDynamicTheme(it) },
