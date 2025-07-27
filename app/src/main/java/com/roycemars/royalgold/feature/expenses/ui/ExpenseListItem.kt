@@ -34,7 +34,6 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
             .fillMaxWidth()
             .padding(vertical = 6.dp, horizontal = 16.dp),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = tertiaryContainerDark)
     ) {
         Row(
             modifier = Modifier.Companion
@@ -47,13 +46,12 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                 Text(
                     text = item.name.uppercase(),
                     style = MaterialTheme.typography.labelMedium,
-                    color = primaryDark.copy(alpha = 0.7f)
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
                 )
                 Text(
                     text = item.amount,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Companion.Bold,
-                    color = primaryDark
                 )
                 if (item.goal != null && item.progress != null) {
                     Spacer(modifier = Modifier.Companion.height(8.dp))
@@ -61,7 +59,7 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                         progress = { item.progress },
                         modifier = Modifier.Companion.fillMaxWidth(0.8f),
                         color = MaterialTheme.colorScheme.primary,
-                        trackColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
+                        trackColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
                     )
                     Row(
                         modifier = Modifier.Companion.fillMaxWidth(0.8f),
@@ -70,13 +68,11 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                         Text(
                             "Goal:",
                             style = MaterialTheme.typography.bodySmall,
-                            color = primaryLight.copy(alpha = 0.6f)
                         )
                         Text(
                             item.goal,
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.Companion.SemiBold,
-                            color = primaryLight.copy(alpha = 0.8f)
                         )
                     }
                 }
@@ -85,7 +81,7 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                 imageVector = item.icon,
                 contentDescription = item.name,
                 modifier = Modifier.Companion.size(36.dp),
-                tint = primaryDark // onTertiaryContainerDark
+                tint = MaterialTheme.colorScheme.primary
             )
         }
     }

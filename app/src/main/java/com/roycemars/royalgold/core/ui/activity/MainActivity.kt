@@ -121,7 +121,7 @@ fun MainScreen() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Screen.Portfolio.route,
+                startDestination = Screen.Expenses.route,
                 modifier = Modifier.Companion.padding(innerPadding)
             ) {
                 composable(Screen.Portfolio.route) { PortfolioScreen() }

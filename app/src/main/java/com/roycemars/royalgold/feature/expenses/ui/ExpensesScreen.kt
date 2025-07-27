@@ -34,9 +34,7 @@ fun ExpensesScreen(
         FloatingActionButton(
             onClick = {
                 Log.d(TAG, "FAB clicked")
-                      },
-            containerColor = primaryContainerDark,
-            contentColor = onPrimaryContainerDark
+                      }
         ) {
             Icon(Icons.Filled.Camera, contentDescription = "Add")
         }
