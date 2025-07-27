@@ -190,8 +190,7 @@ fun PieChart(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, backgroundColor = 0xFF1E1E2C)
 @Composable
 fun PieChartPreview() {
-    RoyalGoldTheme(darkTheme = true,
-        dynamicColor = false) {
+    RoyalGoldTheme(darkTheme = true) {
         PieChart()
     }
 }

@@ -330,7 +330,6 @@ fun RoyalGoldTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.MATRIX, // AppThemeIdentifier.DEFAULT,
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable() () -> Unit
 ) {
     val context = LocalContext.current
@@ -339,7 +338,7 @@ fun RoyalGoldTheme(
     val colorScheme: ColorScheme
     val typography = currentThemeDef?.typography ?: DefaultTypography
 
-    if ((dynamicColor || selectedThemeIdentifier == AppThemeIdentifier.SYSTEM_DYNAMIC)
+    if ((selectedThemeIdentifier == AppThemeIdentifier.SYSTEM_DYNAMIC)
         && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         colorScheme = if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else if (currentThemeDef != null) {

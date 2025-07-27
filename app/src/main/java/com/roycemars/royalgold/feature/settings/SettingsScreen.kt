@@ -1,30 +1,110 @@
 package com.roycemars.royalgold.feature.settings // Adjust package name
 
-import androidx.compose.foundation.layout.Box
+import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.roycemars.royalgold.core.ui.theme.primaryDark
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.roycemars.royalgold.R
+import com.roycemars.royalgold.core.ui.MainViewModel
+import com.roycemars.royalgold.core.ui.theme.AppThemeIdentifier
+import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
 
 @Composable
 fun SettingsScreen(
-        useDynamicTheme: Boolean,
-        onToggleDynamicTheme: (Boolean) -> Unit
+    viewModel: MainViewModel = hiltViewModel()
+) {
+    val currentIdentifier by viewModel.currentThemeIdentifier.collectAsState()
+    SettingsScreenContent(currentIdentifier, onThemeSelected = { selectedIdentifier ->
+        viewModel.updateThemeIdentifier(selectedIdentifier)
+    })
+}
+
+@Composable
+fun SettingsScreenContent(
+    currentIdentifier: AppThemeIdentifier,
+    onThemeSelected: (AppThemeIdentifier) -> Unit
+) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        ThemeRow(currentIdentifier, onThemeSelected)
+    }
+}
+
+@Composable
+fun ThemeRow(
+    currentIdentifier: AppThemeIdentifier,
+    onThemeSelected: (AppThemeIdentifier) -> Unit,
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Use Dynamic Theme", modifier = Modifier.weight(1f))
-                Switch(
-                    checked = useDynamicTheme,
-                    onCheckedChange = { onToggleDynamicTheme(it) },
-                )
+    val availableThemeIdentifiers = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        AppThemeIdentifier.entries
+    } else {
+        AppThemeIdentifier.entries.filter { it != AppThemeIdentifier.SYSTEM_DYNAMIC }
+    }
+
+    Column(horizontalAlignment = Alignment.Start) {
+        Text(
+            stringResource(R.string.select_app_theme),
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        Column(Modifier.selectableGroup()) {
+            availableThemeIdentifiers.forEach { identifier ->
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .selectable(
+                            selected = (identifier == currentIdentifier),
+                            onClick = { onThemeSelected(identifier) },
+                            role = Role.RadioButton
+                        )
+                        .padding(horizontal = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RadioButton(
+                        selected = (identifier == currentIdentifier),
+                        onClick = null
+                    )
+                    Text(
+                        text = identifier.displayName, // Use the user-friendly name
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
+                }
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun SettingsScreenPreviewInDark() {
+    RoyalGoldTheme(darkTheme = true) {
+        SettingsScreenContent(AppThemeIdentifier.MATRIX, { })
+    }
+}
+
+@Preview
+@Composable
+fun SettingsScreenPreviewInLight() {
+    RoyalGoldTheme(darkTheme = false) {
+        SettingsScreenContent(AppThemeIdentifier.MATRIX, { })
+    }
+}

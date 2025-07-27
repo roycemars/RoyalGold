@@ -169,8 +169,7 @@ fun BarChart(darkTheme: Boolean = isSystemInDarkTheme()) { // Pass darkTheme to 
 @Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun BarChartPreviewLight() {
-    RoyalGoldTheme(darkTheme = false,
-        dynamicColor = false) {
+    RoyalGoldTheme(darkTheme = false,) {
         BarChart(darkTheme = false)
     }
 }
@@ -178,8 +177,7 @@ fun BarChartPreviewLight() {
 @Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BarChartPreviewDark() {
-    RoyalGoldTheme(darkTheme = true,
-        dynamicColor = false) {
+    RoyalGoldTheme(darkTheme = true) {
         BarChart(darkTheme = true)
     }
 }
