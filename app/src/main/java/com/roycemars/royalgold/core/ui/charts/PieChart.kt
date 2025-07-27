@@ -114,7 +114,7 @@ fun PieChart(modifier: Modifier = Modifier) {
     val totalExpenses = segments.sumOf { it.value.toDouble() }.toFloat()
     // Find the segment with the highest value for the center display
     val largestSegment = segments.maxByOrNull { it.value } ?: segments.first()
-    val cardBackgroundColor = tertiaryContainerDark //  MaterialTheme.colorScheme.surfaceVariant
+    val cardBackgroundColor = MaterialTheme.colorScheme.tertiaryContainer
 
     Card(
         modifier = modifier
@@ -124,11 +124,10 @@ fun PieChart(modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            // Header "EXPENSES"
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "EXPENSES",
-                    color = onTertiaryContainerDark, // MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR (or onSurfaceSecondary if defined)
+                    color = MaterialTheme.colorScheme.primary,
                     style = MaterialTheme.typography.labelSmall, // Use theme typography
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
@@ -173,13 +172,13 @@ fun PieChart(modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = "$%,.0f".format(largestSegment.value), // Formatted value
-                    color = primaryDark,
+                    color = largestSegment.color, // Color matches the largest segment
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = largestSegment.name.uppercase(),
-                    color = primaryDark,
+                    color = largestSegment.color, // Color matches the largest segment
                     fontSize = 12.sp,
                     letterSpacing = 0.5.sp
                 )
@@ -191,7 +190,8 @@ fun PieChart(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, backgroundColor = 0xFF1E1E2C)
 @Composable
 fun PieChartPreview() {
-    RoyalGoldTheme(darkTheme = true) { // Explicitly use dark theme for this preview
+    RoyalGoldTheme(darkTheme = true,
+        dynamicColor = false) {
         PieChart()
     }
 }

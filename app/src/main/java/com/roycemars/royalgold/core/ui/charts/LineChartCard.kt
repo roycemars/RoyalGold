@@ -204,9 +204,7 @@ fun LineChartCard() {
 @Preview(showBackground = true, widthDp = 380)
 @Composable
 fun CryptoChartCardPreview() {
-    RoyalGoldTheme(
-        selectedThemeIdentifier = AppThemeIdentifier.MATRIX,
-        darkTheme = true,
+    RoyalGoldTheme(darkTheme = true,
         dynamicColor = false) {
 
         Box(

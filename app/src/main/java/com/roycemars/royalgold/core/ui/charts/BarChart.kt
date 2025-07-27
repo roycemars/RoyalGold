@@ -36,7 +36,6 @@ data class BarData(
     val color: Color
 )
 
-val ChartLightBackground = tertiaryContainerDark
 var LightBlueGridLine = onTertiaryContainerDark
 
 @Composable
@@ -50,29 +49,11 @@ fun BarChart(
     gridLineCount: Int = 5,
     darkTheme: Boolean = isSystemInDarkTheme()
 ) {
-    // Determine colors based on the theme (light/dark)
-    val cardBackgroundColor: Color
-    val contentColor: Color
-    val gridLineColorForChart: Color
-    val labelTextColor: Color
-    val amountTextColor: Color
-
-//    TODO: replace dark colors with MaterialTheme.colorScheme when light theme designed
-    if (darkTheme) {
-        // Dark theme colors (as previously defined or from MaterialTheme)
-        cardBackgroundColor = tertiaryContainerDark
-        contentColor = primaryDark
-        gridLineColorForChart = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
-        labelTextColor = contentColor
-        amountTextColor = contentColor
-    } else {
-        // Light theme specific colors for the chart
-        cardBackgroundColor = tertiaryContainerDark
-        contentColor = primaryDark
-        gridLineColorForChart = LightBlueGridLine
-        labelTextColor = contentColor
-        amountTextColor = contentColor
-    }
+    val cardBackgroundColor: Color = MaterialTheme.colorScheme.tertiaryContainer
+    val contentColor: Color = MaterialTheme.colorScheme.primary
+    val gridLineColorForChart: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+    val labelTextColor = contentColor
+    val amountTextColor = contentColor
 
     Card(
         modifier = modifier
@@ -188,7 +169,8 @@ fun BarChart(darkTheme: Boolean = isSystemInDarkTheme()) { // Pass darkTheme to 
 @Preview(name = "BarChart Light Theme", showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun BarChartPreviewLight() {
-    RoyalGoldTheme(darkTheme = false) { // Explicitly set light theme
+    RoyalGoldTheme(darkTheme = false,
+        dynamicColor = false) {
         BarChart(darkTheme = false)
     }
 }
@@ -196,7 +178,8 @@ fun BarChartPreviewLight() {
 @Preview(name = "BarChart Dark Theme", showBackground = true, backgroundColor = 0xFF1E1E1E, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BarChartPreviewDark() {
-    RoyalGoldTheme(darkTheme = true) { // Explicitly set dark theme
+    RoyalGoldTheme(darkTheme = true,
+        dynamicColor = false) {
         BarChart(darkTheme = true)
     }
 }
