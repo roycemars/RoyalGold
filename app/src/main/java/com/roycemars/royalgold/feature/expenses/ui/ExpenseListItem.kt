@@ -82,7 +82,7 @@ fun ExpenseListItem(item: ExpenseItem, @SuppressLint("ModifierParameter") modifi
                 imageVector = item.icon,
                 contentDescription = item.name,
                 modifier = Modifier.Companion.size(36.dp),
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.onSurface
             )
         }
     }

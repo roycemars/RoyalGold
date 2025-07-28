@@ -1,4 +1,4 @@
-package com.roycemars.royalgold.core.ui.theme.martian
+package com.roycemars.royalgold.core.ui.theme.mars
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.FontFamily

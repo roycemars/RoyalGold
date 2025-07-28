@@ -17,9 +17,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.roycemars.royalgold.core.ui.theme.martian.MartianDarkScheme
-import com.roycemars.royalgold.core.ui.theme.martian.MartianLightScheme
-import com.roycemars.royalgold.core.ui.theme.martian.MartianTypography
+import com.roycemars.royalgold.core.ui.theme.mars.MartianDarkScheme
+import com.roycemars.royalgold.core.ui.theme.mars.MartianLightScheme
+import com.roycemars.royalgold.core.ui.theme.mars.MartianTypography
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixDarkScheme
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixLightScheme
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixTypography
@@ -275,7 +275,7 @@ data class ThemeDefinition(
 
 enum class AppThemeIdentifier(val displayName: String) {
     ROYAL("Royal Gold"), // Or "Ocean" if that's your primary
-    MARTIAN("Martian Flame"),
+    MARS("Martian Flame"),
     MATRIX("Matrix Green"),
     SPACE("Space Dark"),
     SYSTEM_DYNAMIC("System Dynamic")
@@ -287,7 +287,7 @@ val appThemes: Map<AppThemeIdentifier, ThemeDefinition> = mapOf(
         darkColorScheme = DefaultDarkScheme,
         typography = DefaultTypography
     ),
-    AppThemeIdentifier.MARTIAN to ThemeDefinition(
+    AppThemeIdentifier.MARS to ThemeDefinition(
         lightColorScheme = MartianLightScheme,
         darkColorScheme = MartianDarkScheme,
         typography = MartianTypography
