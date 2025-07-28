@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -14,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Matrix
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -25,12 +23,6 @@ import com.roycemars.royalgold.core.ui.theme.martian.MartianTypography
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixDarkScheme
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixLightScheme
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixTypography
-import com.roycemars.royalgold.core.ui.theme.ocean.OceanDarkScheme
-import com.roycemars.royalgold.core.ui.theme.ocean.OceanLightScheme
-import com.roycemars.royalgold.core.ui.theme.ocean.OceanTypography
-import com.roycemars.royalgold.core.ui.theme.royal.RoyalDarkScheme
-import com.roycemars.royalgold.core.ui.theme.royal.RoyalLightScheme
-import com.roycemars.royalgold.core.ui.theme.royal.RoyalTypography
 import com.roycemars.royalgold.core.ui.theme.space.SpaceDarkScheme
 import com.roycemars.royalgold.core.ui.theme.space.SpaceLightScheme
 import com.roycemars.royalgold.core.ui.theme.space.SpaceTypography
@@ -282,17 +274,15 @@ data class ThemeDefinition(
 )
 
 enum class AppThemeIdentifier(val displayName: String) {
-    DEFAULT("Default"), // Or "Ocean" if that's your primary
+    ROYAL("Royal Gold"), // Or "Ocean" if that's your primary
     MARTIAN("Martian Flame"),
-    ROYAL("Royal Gold"),
     MATRIX("Matrix Green"),
     SPACE("Space Dark"),
-    OCEAN("Ocean Cold"),
     SYSTEM_DYNAMIC("System Dynamic")
 }
 
 val appThemes: Map<AppThemeIdentifier, ThemeDefinition> = mapOf(
-    AppThemeIdentifier.DEFAULT to ThemeDefinition(
+    AppThemeIdentifier.ROYAL to ThemeDefinition(
         lightColorScheme = DefaultLightScheme,
         darkColorScheme = DefaultDarkScheme,
         typography = DefaultTypography
@@ -301,11 +291,6 @@ val appThemes: Map<AppThemeIdentifier, ThemeDefinition> = mapOf(
         lightColorScheme = MartianLightScheme,
         darkColorScheme = MartianDarkScheme,
         typography = MartianTypography
-    ),
-    AppThemeIdentifier.ROYAL to ThemeDefinition(
-        lightColorScheme = RoyalLightScheme,
-        darkColorScheme = RoyalDarkScheme,
-        typography = RoyalTypography
     ),
     AppThemeIdentifier.MATRIX to ThemeDefinition(
         lightColorScheme = MatrixLightScheme,
@@ -317,18 +302,13 @@ val appThemes: Map<AppThemeIdentifier, ThemeDefinition> = mapOf(
         darkColorScheme = SpaceDarkScheme,
         typography = SpaceTypography
     ),
-    AppThemeIdentifier.OCEAN to ThemeDefinition(
-        lightColorScheme = OceanLightScheme,
-        darkColorScheme = OceanDarkScheme,
-        typography = OceanTypography
-    ),
     // SYSTEM_DYNAMIC will be handled separately as it doesn't have a predefined typography
 )
 
 @Composable
 fun RoyalGoldTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.DEFAULT,
+    selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.ROYAL,
     // Dynamic color is available on Android 12+
     content: @Composable() () -> Unit
 ) {
@@ -345,8 +325,8 @@ fun RoyalGoldTheme(
         colorScheme = if (darkTheme) currentThemeDef.darkColorScheme else currentThemeDef.lightColorScheme
     } else {
         // Fallback to default if something goes wrong (e.g., SYSTEM_DYNAMIC on older OS, or invalid identifier)
-        val defaultTheme = appThemes[AppThemeIdentifier.DEFAULT]!! // Assuming DEFAULT always exists
-        colorScheme = if (darkTheme) defaultTheme.darkColorScheme else defaultTheme.lightColorScheme
+        val ROYALTheme = appThemes[AppThemeIdentifier.ROYAL]!! // Assuming DEFAULT always exists
+        colorScheme = if (darkTheme) ROYALTheme.darkColorScheme else ROYALTheme.lightColorScheme
     }
 
     val view = LocalView.current

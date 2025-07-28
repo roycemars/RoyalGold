@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     val currentThemeIdentifier: StateFlow<AppThemeIdentifier> = themePreferencesRepository.selectedThemeIdentifier
         .stateIn(scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = AppThemeIdentifier.DEFAULT)
+            initialValue = AppThemeIdentifier.ROYAL)
     fun updateThemeIdentifier(identifier: AppThemeIdentifier) {
         viewModelScope.launch {
             themePreferencesRepository.setSelectedThemeIdentifier(identifier)

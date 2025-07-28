@@ -24,11 +24,11 @@ class ThemePreferencesRepository @Inject constructor(@ApplicationContext private
 
     val selectedThemeIdentifier: Flow<AppThemeIdentifier> = context.themeIdentifierDataStore.data
         .map { preferences ->
-            val themeName = preferences[PreferencesKeys.SELECTED_THEME_IDENTIFIER] ?: AppThemeIdentifier.DEFAULT.name
+            val themeName = preferences[PreferencesKeys.SELECTED_THEME_IDENTIFIER] ?: AppThemeIdentifier.ROYAL.name
             try {
                 AppThemeIdentifier.valueOf(themeName)
             } catch (e: IllegalArgumentException) {
-                AppThemeIdentifier.DEFAULT // Fallback
+                AppThemeIdentifier.ROYAL // Fallback
             }
         }
 
