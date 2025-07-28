@@ -5,6 +5,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import com.roycemars.royalgold.R
+import com.roycemars.royalgold.core.ui.theme.matrix.provider
 
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
@@ -14,14 +15,14 @@ val provider = GoogleFont.Provider(
 
 val bodyFontFamily = FontFamily(
     Font(
-        googleFont = GoogleFont("Red Hat Display"),
+        googleFont = GoogleFont("Electrolize"),
         fontProvider = provider,
     )
 )
 
 val displayFontFamily = FontFamily(
     Font(
-        googleFont = GoogleFont("Red Hat Display"),
+        googleFont = GoogleFont("Electrolize"),
         fontProvider = provider,
     )
 )

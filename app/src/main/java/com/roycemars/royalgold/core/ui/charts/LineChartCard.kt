@@ -63,9 +63,6 @@ fun LineChartCard(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Column(

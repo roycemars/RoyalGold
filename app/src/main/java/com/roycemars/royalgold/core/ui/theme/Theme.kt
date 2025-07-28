@@ -328,7 +328,7 @@ val appThemes: Map<AppThemeIdentifier, ThemeDefinition> = mapOf(
 @Composable
 fun RoyalGoldTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.MATRIX, // AppThemeIdentifier.DEFAULT,
+    selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.DEFAULT,
     // Dynamic color is available on Android 12+
     content: @Composable() () -> Unit
 ) {

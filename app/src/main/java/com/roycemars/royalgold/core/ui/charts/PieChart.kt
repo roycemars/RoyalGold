@@ -42,6 +42,92 @@ data class ProgressSegment(
 )
 
 @Composable
+fun PieChart(modifier: Modifier = Modifier) {
+    val segments = listOf(
+        ProgressSegment("Housing", 2134f, OrangeSegment, Icons.Filled.Home),
+        ProgressSegment("Food & drinks", 891f, BlueSegment),
+        ProgressSegment("Entertainment", 497f, PinkSegment),
+        ProgressSegment("Transportation", 344f, PurpleSegment),
+        ProgressSegment("Miscellaneous", 100f, GraySegment)
+    )
+
+    val totalExpenses = segments.sumOf { it.value.toDouble() }.toFloat()
+    // Find the segment with the highest value for the center display
+    val largestSegment = segments.maxByOrNull { it.value } ?: segments.first()
+//    val cardBackgroundColor = MaterialTheme.colorScheme.tertiaryContainer
+
+    ElevatedCard(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+//        colors = CardDefaults.cardColors(containerColor = cardBackgroundColor),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "EXPENSES",
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelSmall, // Use theme typography
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Icon(
+                    Icons.Filled.ArrowDropDown, // Placeholder, replace with your actual dropdown icon
+                    contentDescription = "Filter expenses",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR
+                    modifier = Modifier.size(18.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+
+            SegmentedCircularProgressBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1f) // Ensure it's a circle
+                    .padding(horizontal = 24.dp), // Padding to not touch card edges
+                segments = segments,
+                strokeWidth = 22.dp, // Adjust as needed
+                totalValue = totalExpenses,
+                backgroundArcColor = Color.DarkGray.copy(alpha = 0.1f)
+            ) {
+                // Center Content
+                Box(
+                    modifier = Modifier
+                        .size(60.dp) // Adjust size of the inner circle icon background
+                        .background(
+                            MaterialTheme.colorScheme.surfaceContainer,// tertiaryContainerDark, //  //MaterialTheme.colorScheme.surfaceVariant, // USE THEME COLOR (was CenterCircleBackground)
+                            shape = CircleShape
+                        )
+                        .padding(8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = largestSegment.icon ?: Icons.Filled.Home, // Fallback icon
+                        contentDescription = largestSegment.name,
+                        tint = largestSegment.color, // Icon color matches the largest segment
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = "$%,.0f".format(largestSegment.value), // Formatted value
+                    color = largestSegment.color, // Color matches the largest segment
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = largestSegment.name.uppercase(),
+                    color = largestSegment.color, // Color matches the largest segment
+                    fontSize = 12.sp,
+                    letterSpacing = 0.5.sp
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun SegmentedCircularProgressBar(
     modifier: Modifier = Modifier,
     segments: List<ProgressSegment>,
@@ -97,92 +183,6 @@ fun SegmentedCircularProgressBar(
             verticalArrangement = Arrangement.Center
         ) {
             centerContent()
-        }
-    }
-}
-
-@Composable
-fun PieChart(modifier: Modifier = Modifier) {
-    val segments = listOf(
-        ProgressSegment("Housing", 2134f, OrangeSegment, Icons.Filled.Home),
-        ProgressSegment("Food & drinks", 891f, BlueSegment),
-        ProgressSegment("Entertainment", 497f, PinkSegment),
-        ProgressSegment("Transportation", 344f, PurpleSegment),
-        ProgressSegment("Miscellaneous", 100f, GraySegment)
-    )
-
-    val totalExpenses = segments.sumOf { it.value.toDouble() }.toFloat()
-    // Find the segment with the highest value for the center display
-    val largestSegment = segments.maxByOrNull { it.value } ?: segments.first()
-    val cardBackgroundColor = MaterialTheme.colorScheme.tertiaryContainer
-
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        colors = CardDefaults.cardColors(containerColor = cardBackgroundColor),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = "EXPENSES",
-                    color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.labelSmall, // Use theme typography
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Icon(
-                    Icons.Filled.ArrowDropDown, // Placeholder, replace with your actual dropdown icon
-                    contentDescription = "Filter expenses",
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant, // USE THEME COLOR
-                    modifier = Modifier.size(18.dp)
-                )
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-
-            SegmentedCircularProgressBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f) // Ensure it's a circle
-                    .padding(horizontal = 24.dp), // Padding to not touch card edges
-                segments = segments,
-                strokeWidth = 22.dp, // Adjust as needed
-                totalValue = totalExpenses,
-                backgroundArcColor = Color.DarkGray.copy(alpha = 0.1f)
-            ) {
-                // Center Content
-                Box(
-                    modifier = Modifier
-                        .size(60.dp) // Adjust size of the inner circle icon background
-                        .background(
-                            tertiaryContainerDark, //  //MaterialTheme.colorScheme.surfaceVariant, // USE THEME COLOR (was CenterCircleBackground)
-                            shape = CircleShape
-                        )
-                        .padding(8.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = largestSegment.icon ?: Icons.Filled.Home, // Fallback icon
-                        contentDescription = largestSegment.name,
-                        tint = largestSegment.color, // Icon color matches the largest segment
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    text = "$%,.0f".format(largestSegment.value), // Formatted value
-                    color = largestSegment.color, // Color matches the largest segment
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = largestSegment.name.uppercase(),
-                    color = largestSegment.color, // Color matches the largest segment
-                    fontSize = 12.sp,
-                    letterSpacing = 0.5.sp
-                )
-            }
         }
     }
 }

@@ -1,9 +1,9 @@
 package com.roycemars.royalgold.core.ui.theme.matrix
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF006E01)
+val primaryLight = Color(0xFF00C807)
 val onPrimaryLight = Color(0xFFFFFFFF)
-val primaryContainerLight = Color(0xFF00C807)
+val primaryContainerLight = Color(0xFF006E01)
 val onPrimaryContainerLight = Color(0xFF004C00)
 val secondaryLight = Color(0xFF5D5F5F)
 val onSecondaryLight = Color(0xFFFFFFFF)

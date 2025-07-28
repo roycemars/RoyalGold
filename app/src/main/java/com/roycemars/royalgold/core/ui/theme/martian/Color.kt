@@ -1,9 +1,9 @@
 package com.roycemars.royalgold.core.ui.theme.martian
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF9D4400)
+val primaryLight = Color(0xFFFF7300)
 val onPrimaryLight = Color(0xFFFFFFFF)
-val primaryContainerLight = Color(0xFFFF7300)
+val primaryContainerLight = Color( 0xFFFFA912)
 val onPrimaryContainerLight = Color(0xFF5A2400)
 val secondaryLight = Color(0xFF5D5F5F)
 val onSecondaryLight = Color(0xFFFFFFFF)
@@ -109,9 +109,9 @@ val surfaceContainerLightHighContrast = Color(0xFFF7DDD2)
 val surfaceContainerHighLightHighContrast = Color(0xFFE8CFC4)
 val surfaceContainerHighestLightHighContrast = Color(0xFFD9C2B7)
 
-val primaryDark = Color(0xFFFFB68F)
+val primaryDark = Color(0xFFFF7300)
 val onPrimaryDark = Color(0xFF542100)
-val primaryContainerDark = Color(0xFFFF7300)
+val primaryContainerDark = Color(0xFFFFA912)
 val onPrimaryContainerDark = Color(0xFF5A2400)
 val secondaryDark = Color(0xFFFFFFFF)
 val onSecondaryDark = Color(0xFF2F3131)
