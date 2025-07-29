@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.roycemars.royalgold.core.ui.charts.BarChart
 import com.roycemars.royalgold.core.ui.charts.PieChart
+import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
 
 /**
  * TODO: add Firebase for remote database sync
@@ -20,20 +21,22 @@ import com.roycemars.royalgold.core.ui.charts.PieChart
 fun BudgetScreen() {
     val scrollState = rememberScrollState()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center // This centers the Column if it's smaller than the Box
-    ) {
-        Column(
+    BoxWithGradientBackground {
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center // This centers the Column if it's smaller than the Box
         ) {
-            PieChart()
-            BarChart()
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                PieChart()
+                BarChart()
+            }
         }
     }
 }

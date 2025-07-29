@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.roycemars.royalgold.core.ui.charts.LineChartCard
+import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
 
 /**
  * TODO: Add portfolio database backed with Firebase to keep track of value of different assets
@@ -14,7 +15,10 @@ import com.roycemars.royalgold.core.ui.charts.LineChartCard
  */
 @Composable
 fun PortfolioScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    BoxWithGradientBackground(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         Column {
             LineChartCard()
         }

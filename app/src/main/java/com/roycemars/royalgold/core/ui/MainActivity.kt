@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +26,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -36,6 +39,8 @@ import androidx.navigation.compose.rememberNavController
 import com.roycemars.royalgold.app.navigation.Screen
 import com.roycemars.royalgold.app.navigation.bottomNavItems
 import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
+import com.roycemars.royalgold.core.ui.theme.backgroundGradientDark
+import com.roycemars.royalgold.core.ui.theme.backgroundGradientLight
 import com.roycemars.royalgold.feature.budget.ui.BudgetScreen
 import com.roycemars.royalgold.feature.expenses.ui.ExpensesScreen
 import com.roycemars.royalgold.feature.market.ui.MarketScreen

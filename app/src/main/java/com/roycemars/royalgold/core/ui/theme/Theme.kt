@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.roycemars.royalgold.core.ui.theme.mars.MartianDarkScheme
-import com.roycemars.royalgold.core.ui.theme.mars.MartianLightScheme
+import com.roycemars.royalgold.core.ui.theme.mars.MarsDarkScheme
+import com.roycemars.royalgold.core.ui.theme.mars.MarsLightScheme
 import com.roycemars.royalgold.core.ui.theme.mars.MartianTypography
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixDarkScheme
 import com.roycemars.royalgold.core.ui.theme.matrix.MatrixLightScheme
@@ -288,8 +288,8 @@ val appThemes: Map<AppThemeIdentifier, ThemeDefinition> = mapOf(
         typography = DefaultTypography
     ),
     AppThemeIdentifier.MARS to ThemeDefinition(
-        lightColorScheme = MartianLightScheme,
-        darkColorScheme = MartianDarkScheme,
+        lightColorScheme = MarsLightScheme,
+        darkColorScheme = MarsDarkScheme,
         typography = MartianTypography
     ),
     AppThemeIdentifier.MATRIX to ThemeDefinition(

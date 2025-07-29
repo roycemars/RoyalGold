@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
 import com.roycemars.royalgold.feature.market.domain.Crypto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,29 +45,31 @@ fun MarketScreen(
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        if (cryptoListings.loadState.refresh is LoadState.Loading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
-            )
-        } else {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(
-                    horizontal = 16.dp,
-                    vertical = 8.dp
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                stickyHeader {
-                    HeaderCard(modifier = Modifier.fillMaxWidth())
-                }
-                items(cryptoListings.itemCount) { index ->
+    BoxWithGradientBackground {
+        Box(modifier = Modifier.fillMaxSize()) {
+            if (cryptoListings.loadState.refresh is LoadState.Loading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    contentPadding = PaddingValues(
+                        horizontal = 16.dp,
+                        vertical = 8.dp
+                    ),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    stickyHeader {
+                        HeaderCard(modifier = Modifier.fillMaxWidth())
+                    }
+                    items(cryptoListings.itemCount) { index ->
 
-                    val crypto = cryptoListings[index]
-                    if (crypto != null) {
-                        CryptoItem(crypto, Modifier.fillMaxWidth())
+                        val crypto = cryptoListings[index]
+                        if (crypto != null) {
+                            CryptoItem(crypto, Modifier.fillMaxWidth())
+                        }
                     }
                 }
             }

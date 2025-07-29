@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
 import com.roycemars.royalgold.core.ui.theme.onPrimaryContainerDark
 import com.roycemars.royalgold.core.ui.theme.primaryContainerDark
 import com.roycemars.royalgold.core.ui.theme.primaryLight
@@ -40,8 +41,10 @@ fun ExpensesScreen(
             Icon(Icons.Filled.Camera, contentDescription = "Add")
         }
     }) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
-            LazyColumn(modifier = Modifier.fillMaxSize(),
+        BoxWithGradientBackground(
+//            modifier = Modifier.padding(innerPadding)
+        ) {
+            LazyColumn(modifier = Modifier.fillMaxSize().padding(innerPadding),
             ) {
                 items(expenseItemsList) { wallet ->
                     ExpenseListItem(item = wallet)

@@ -91,7 +91,7 @@ fun LineChartCard(
                 text = currentPrice,
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
 
             // Asset Name
