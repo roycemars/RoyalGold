@@ -13,9 +13,12 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.roycemars.royalgold.core.ui.MainViewModel
 import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
 import com.roycemars.royalgold.core.ui.theme.onPrimaryContainerDark
 import com.roycemars.royalgold.core.ui.theme.primaryContainerDark
@@ -27,9 +30,12 @@ import com.roycemars.royalgold.core.ui.theme.primaryLight
 
 @Composable
 fun ExpensesScreen(
-    viewModel: ExpensesScreenViewModel = hiltViewModel()
+    viewModel: ExpensesScreenViewModel = hiltViewModel(),
+    mainViewModel: MainViewModel = hiltViewModel()
 ) {
     val TAG = "ExpensesListScreen"
+    val currentIdentifier by mainViewModel.currentThemeIdentifier.collectAsState()
+
     val expenseItemsList = remember { viewModel.expenseItemsList }
 
     Scaffold(floatingActionButton = {
@@ -42,7 +48,7 @@ fun ExpensesScreen(
         }
     }) { innerPadding ->
         BoxWithGradientBackground(
-//            modifier = Modifier.padding(innerPadding)
+            appThemeIdentifier = currentIdentifier,
         ) {
             LazyColumn(modifier = Modifier.fillMaxSize().padding(innerPadding),
             ) {

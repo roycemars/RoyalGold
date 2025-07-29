@@ -15,12 +15,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import com.roycemars.royalgold.core.ui.theme.AppThemeIdentifier
 import com.roycemars.royalgold.core.ui.theme.backgroundGradientDark
 import com.roycemars.royalgold.core.ui.theme.backgroundGradientLight
+import com.roycemars.royalgold.core.ui.theme.gradientColors
 
 @SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun BoxWithGradientBackground(
+    appThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.ROYAL,
     modifier: Modifier = Modifier,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit) {
@@ -28,8 +31,10 @@ fun BoxWithGradientBackground(
         modifier = Modifier
             .fillMaxSize()
     ) {
+        val gradientColors = gradientColors(appThemeIdentifier)
+
         val gradientBrush = Brush.linearGradient(
-            colors = listOf(backgroundGradientLight, backgroundGradientDark),
+            colors = listOf(gradientColors.backgroundGradientLight, gradientColors.backgroundGradientDark),
             start = Offset.Zero,
             end = Offset(constraints.maxWidth * 0.2f, constraints.maxHeight * 0.1f),
         )

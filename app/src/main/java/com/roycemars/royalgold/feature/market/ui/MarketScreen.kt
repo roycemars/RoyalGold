@@ -12,6 +12,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -19,14 +21,17 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.roycemars.royalgold.core.ui.MainViewModel
 import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
 import com.roycemars.royalgold.feature.market.domain.Crypto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MarketScreen(
-    viewModel: CryptoViewModel = hiltViewModel()
+    viewModel: CryptoViewModel = hiltViewModel(),
+    mainViewModel: MainViewModel = hiltViewModel()
 ) {
+    val currentIdentifier by mainViewModel.currentThemeIdentifier.collectAsState()
     val cryptoListings = viewModel.cryptoPagingFlow.collectAsLazyPagingItems()
 
     val currentItemsSnapshot = cryptoListings.itemSnapshotList
@@ -45,7 +50,9 @@ fun MarketScreen(
         }
     }
 
-    BoxWithGradientBackground {
+    BoxWithGradientBackground(
+        appThemeIdentifier = currentIdentifier
+    ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (cryptoListings.loadState.refresh is LoadState.Loading) {
                 CircularProgressIndicator(

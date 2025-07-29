@@ -57,6 +57,7 @@ fun SettingsScreenContent(
     onThemeSelected: (AppThemeIdentifier) -> Unit
 ) {
     BoxWithGradientBackground(
+        appThemeIdentifier = currentIdentifier,
         modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
