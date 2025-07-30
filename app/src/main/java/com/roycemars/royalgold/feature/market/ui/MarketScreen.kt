@@ -3,7 +3,6 @@ package com.roycemars.royalgold.feature.market.ui
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +22,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.roycemars.royalgold.core.ui.MainViewModel
 import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
-import com.roycemars.royalgold.feature.market.domain.Crypto
+import com.roycemars.royalgold.feature.market.data.mappers.toCrypto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,34 +31,13 @@ fun MarketScreen(
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
     val currentIdentifier by mainViewModel.currentThemeIdentifier.collectAsState()
-    val cryptoListings = viewModel.cryptoPagingFlow.collectAsLazyPagingItems()
-
-    val currentItemsSnapshot = cryptoListings.itemSnapshotList
-    for (item in currentItemsSnapshot) {
-        Log.d("MarketScreenDebug", "Item: ${item?.symbol}, ${item?.price} ${item?.percentChange1h} ${item?.percentChange24h}")
-    }
-
-    val context = LocalContext.current
-    LaunchedEffect(key1 = cryptoListings.loadState) {
-        if (cryptoListings.loadState.refresh is LoadState.Error) {
-            Toast.makeText(
-                context,
-                "Error: " + (cryptoListings.loadState.refresh as LoadState.Error).error.message,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
+    val cryptoItems = viewModel.cryptoFlow.collectAsLazyPagingItems()
 
     BoxWithGradientBackground(
         appThemeIdentifier = currentIdentifier
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            if (cryptoListings.loadState.refresh is LoadState.Loading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            } else {
-                LazyColumn(
+
+        LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     contentPadding = PaddingValues(
@@ -67,16 +45,24 @@ fun MarketScreen(
                         vertical = 8.dp
                     ),
                     horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    stickyHeader {
-                        HeaderCard(modifier = Modifier.fillMaxWidth())
-                    }
-                    items(cryptoListings.itemCount) { index ->
-
-                        val crypto = cryptoListings[index]
-                        if (crypto != null) {
-                            CryptoItem(crypto, Modifier.fillMaxWidth())
+        ) {
+            stickyHeader {
+                HeaderCard(modifier = Modifier.fillMaxWidth())
+            }
+            items(cryptoItems.itemCount) { index ->
+                        val cryptoEntity = cryptoItems[index]
+                        if (cryptoEntity != null) {
+                            CryptoItem(cryptoEntity.toCrypto(), Modifier.fillMaxWidth())
                         }
+                    }
+
+            cryptoItems.apply {
+                when {
+                    loadState.refresh is LoadState.Loading -> {
+                        item { CircularProgressIndicator() }
+                    }
+                    loadState.append is LoadState.Loading -> {
+                        item { CircularProgressIndicator() }
                     }
                 }
             }

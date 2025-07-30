@@ -14,6 +14,8 @@ import com.roycemars.royalgold.feature.market.data.local.CryptoEntity
 import com.roycemars.royalgold.feature.market.data.remote.AuthInterceptor
 import com.roycemars.royalgold.feature.market.data.remote.CryptoApi
 import com.roycemars.royalgold.feature.market.data.remote.CryptoRemoteMediator
+import com.roycemars.royalgold.feature.market.data.repository.CryptoRepository
+import com.roycemars.royalgold.feature.market.data.repository.CryptoRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +25,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -91,6 +92,12 @@ object CryptoModule {
         return retrofit.create(CryptoApi::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideCryptoRepository(db: CryptoDatabase, api: CryptoApi): CryptoRepository {
+        return CryptoRepositoryImpl(db, api)
+    }
+
     @OptIn(ExperimentalPagingApi::class)
     @Provides
     @Singleton
@@ -98,8 +105,8 @@ object CryptoModule {
         return Pager(
             config = PagingConfig(pageSize = 20),
             remoteMediator = CryptoRemoteMediator(
-                cryptoDatabase = cryptoDatabase,
-                cryptoApi = cryptoApi
+                db = cryptoDatabase,
+                api = cryptoApi
             ),
             pagingSourceFactory = {
                 cryptoDatabase.dao.pagingSource()

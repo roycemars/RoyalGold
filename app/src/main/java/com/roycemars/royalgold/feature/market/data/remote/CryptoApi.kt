@@ -11,8 +11,8 @@ interface CryptoApi {
 
     @GET("listings/latest")
     suspend fun getListings(
-        @Query("start") start: Int,
-        @Query("limit") limit: Int,
+        @Query("start") start: Int = 1,
+        @Query("limit") limit: Int = 100,
     ): CryptoListingsResponseDto
 
     companion object {
