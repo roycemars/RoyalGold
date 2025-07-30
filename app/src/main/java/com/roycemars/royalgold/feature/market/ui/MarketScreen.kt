@@ -3,12 +3,20 @@ package com.roycemars.royalgold.feature.market.ui
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,6 +40,7 @@ fun MarketScreen(
 ) {
     val currentIdentifier by mainViewModel.currentThemeIdentifier.collectAsState()
     val cryptoItems = viewModel.cryptoFlow.collectAsLazyPagingItems()
+    val recommendationState by viewModel.recommendationState.collectAsState()
 
     viewModel.getRecommendations()
 
@@ -49,6 +58,7 @@ fun MarketScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
         ) {
             stickyHeader {
+                RecommendationHeader(recommendationState)
                 HeaderCard(modifier = Modifier.fillMaxWidth())
             }
             items(cryptoItems.itemCount) { index ->
@@ -68,6 +78,69 @@ fun MarketScreen(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun RecommendationHeader(state: RecommendationUiState) {
+    // Only display the header if there's content or loading/error states to show
+    // You can customize the appearance extensively
+    when (state) {
+        is RecommendationUiState.Success -> {
+            if (state.summary.isNotBlank()) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    shape = RoundedCornerShape(8.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "Recommendations:",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = state.summary,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                    }
+                }
+            }
+        }
+        is RecommendationUiState.Loading -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator() // Or a shimmer placeholder
+            }
+        }
+        is RecommendationUiState.Error -> {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer)
+            ) {
+                Text(
+                    text = state.message,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onErrorContainer,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+        RecommendationUiState.Empty -> {
+            // Optionally show nothing or a placeholder if empty
+            // Box(modifier = Modifier.height(0.dp)) // Effectively hides it
         }
     }
 }

@@ -7,6 +7,7 @@ import com.google.firebase.vertexai.type.SafetySetting
 import com.google.firebase.vertexai.type.generationConfig
 import com.google.firebase.vertexai.vertexAI
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
@@ -37,7 +38,7 @@ class GeminiRepositoryImpl @Inject constructor(): GeminiRepository {
         )
     )
 
-    override suspend fun summarize(input: String): String {
+    override suspend fun summarize(input: String): Flow<String> {
 //        val postString = StringBuilder()
 //        for (paragraph in post.paragraphs) {
 //            postString.append(paragraph.text)
@@ -49,6 +50,18 @@ class GeminiRepositoryImpl @Inject constructor(): GeminiRepository {
 //                    "Return just the bullet points as plain text. " +
 //                    "Use plain text, don't use markdown. \n $input"
 
-        return generativeModel.generateContent(prompt).text ?: ""
+        return flow { // Use the flow builder
+            try {
+                val responseText = generativeModel.generateContent(prompt).text ?: ""
+                emit(responseText) // Emit the result
+            } catch (e: Exception) {
+                // Handle potential exceptions during the API call
+                // For example, you could emit an error state or rethrow
+                // For simplicity here, we'll let it propagate, but in a real app,
+                // you might want to emit a wrapped Result class or a specific error string.
+                // Log.e("GeminiRepo", "Error generating content", e)
+                throw e // Or emit an error signal if your Flow's type supports it
+            }
+        }
     }
 }
