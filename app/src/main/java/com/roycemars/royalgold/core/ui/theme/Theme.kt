@@ -18,7 +18,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import com.roycemars.royalgold.core.ui.theme.core.DefaultGradientColors
+import com.roycemars.royalgold.core.ui.theme.core.DefaultTickerColors
 import com.roycemars.royalgold.core.ui.theme.core.GradientColors
+import com.roycemars.royalgold.core.ui.theme.core.TickerColors
 import com.roycemars.royalgold.core.ui.theme.mars.MarsDarkScheme
 import com.roycemars.royalgold.core.ui.theme.mars.MarsLightScheme
 import com.roycemars.royalgold.core.ui.theme.mars.MartianTypography
@@ -163,7 +165,11 @@ fun gradientColors(selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentif
     else -> DefaultGradientColors
 }
 
-@Composable
+fun tickerColors() =
+    DefaultTickerColors
+
+
+    @Composable
 fun RoyalGoldTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     selectedThemeIdentifier: AppThemeIdentifier = AppThemeIdentifier.ROYAL,

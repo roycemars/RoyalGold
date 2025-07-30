@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
+import com.roycemars.royalgold.core.ui.theme.tickerColors
 import com.roycemars.royalgold.feature.market.domain.Crypto
 import java.util.Calendar
 import kotlin.String
@@ -44,8 +44,8 @@ fun CryptoItem(
         ) {
             Text(crypto.symbol, fontWeight = FontWeight.Bold)
             Text(text = String.format("%.2f", crypto.price), fontWeight = FontWeight.Bold)
-            ticker(crypto.percentChange1h)
-            ticker(crypto.percentChange24h)
+            Ticker(crypto.percentChange1h)
+            Ticker(crypto.percentChange24h)
         }
     }
 }
@@ -72,11 +72,13 @@ fun HeaderCard(modifier: Modifier = Modifier) {
 
 @SuppressLint("DefaultLocale")
 @Composable
-fun ticker(inPercentChange: Double?) {
+fun Ticker(inPercentChange: Double?) {
     val percentChange = inPercentChange ?: 0.0 // Handle null
+
+    val tickerColors = tickerColors()
     val backgroundColor = when {
-        percentChange < 0 -> Color.Red.copy(alpha = 0.7f)
-        percentChange > 0 -> Color.Green.copy(alpha = 0.7f)
+        percentChange < 0 -> tickerColors.tickerRed.copy(alpha = 0.7f)
+        percentChange > 0 -> tickerColors.tickerGreen.copy(alpha = 0.7f)
         else -> Color.Transparent
     }
     val textColor = if (percentChange != 0.0) Color.White else Color.Black

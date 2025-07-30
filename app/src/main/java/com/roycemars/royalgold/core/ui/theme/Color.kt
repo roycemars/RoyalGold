@@ -77,3 +77,5 @@ val surfaceContainerHighestDark = Color(0xFF403C48)
 
 val backgroundGradientLight = Color(0xFF550F72)
 val backgroundGradientDark = Color(0xFF16101E)
+val tickerGreen = Color(0xFF00C807)
+val tickerRed = Color(0xFFE4006C)
