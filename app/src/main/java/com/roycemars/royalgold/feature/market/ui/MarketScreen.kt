@@ -33,6 +33,8 @@ fun MarketScreen(
     val currentIdentifier by mainViewModel.currentThemeIdentifier.collectAsState()
     val cryptoItems = viewModel.cryptoFlow.collectAsLazyPagingItems()
 
+    viewModel.getRecommendations()
+
     BoxWithGradientBackground(
         appThemeIdentifier = currentIdentifier
     ) {
