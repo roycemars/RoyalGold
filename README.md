@@ -1,4 +1,6 @@
-Royal Gold is a simple proof of concept for the AI-powered crypto auto-trading platform with portfolio and budget management.
+# Royal Gold 
+
+It's your AI-powered companion for crypto auto-trading with simple and friendly portfolio and budget management.
 
 Concept idea:
 - Gemini AI Nano is available on device and provides powerful tool for AI-powered analytics
@@ -14,7 +16,7 @@ Core features/screens:
 - Expense tracking: Track expenses automatically with linked PayPal or portfolio transactions, scan paper receipts directly to expenses list
 - Market: review top movers, trends and AI-powered suggestion for trading, use fully automated trading when it is available
 
-Project is currently in active development - many features will be added soon.
+Project is currently in active development - roadmap for upcoming features will be published soon.
 
 Interested to contribute? 
 Ping me email at roycemars@proton.me, or chat in Telegram at https://roycemars.t.me to collaborate
