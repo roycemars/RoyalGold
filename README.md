@@ -1,6 +1,6 @@
 # Royal Gold 
 
-It's your AI-powered companion for crypto auto-trading with simple and friendly portfolio and budget management.
+Your AI-powered companion for crypto auto-trading with simple and friendly portfolio and budget management.
 
 Concept idea:
 - Gemini AI Nano is available on device and provides powerful tool for AI-powered analytics
