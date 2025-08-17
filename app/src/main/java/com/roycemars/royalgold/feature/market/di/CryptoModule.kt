@@ -8,6 +8,8 @@ import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.roycemars.royalgold.BuildConfig
+import com.roycemars.royalgold.feature.market.data.gemini.GeminiRepository
+import com.roycemars.royalgold.feature.market.data.gemini.GeminiRepositoryImpl
 import com.roycemars.royalgold.feature.market.data.local.CryptoDao
 import com.roycemars.royalgold.feature.market.data.local.CryptoDatabase
 import com.roycemars.royalgold.feature.market.data.local.CryptoEntity
@@ -96,6 +98,12 @@ object CryptoModule {
     @Singleton
     fun provideCryptoRepository(db: CryptoDatabase, api: CryptoApi): CryptoRepository {
         return CryptoRepositoryImpl(db, api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGeminiRepository(): GeminiRepository {
+        return GeminiRepositoryImpl()
     }
 
     @OptIn(ExperimentalPagingApi::class)

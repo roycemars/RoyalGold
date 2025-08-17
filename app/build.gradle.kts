@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
+    id("com.google.gms.google-services")
 }
 
 configurations.all {
@@ -137,6 +138,9 @@ dependencies {
     // Add Retrofit Gson converter
     implementation(libs.converter.gson) // Or the version matching your Retrofit version (libs.converter.gson)
 
+    implementation(libs.firebase.bom)
+//    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.vertexai)
 }
 
 kapt {
