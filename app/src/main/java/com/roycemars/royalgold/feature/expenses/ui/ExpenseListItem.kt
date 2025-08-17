@@ -22,10 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
-import com.roycemars.royalgold.core.ui.theme.primaryDark
-import com.roycemars.royalgold.core.ui.theme.primaryLight
-import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
+//import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
+//import com.roycemars.royalgold.core.ui.theme.primaryDark
+//import com.roycemars.royalgold.core.ui.theme.primaryLight
+//import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 import com.roycemars.royalgold.feature.expenses.domain.ExpenseItem
 
 @Composable

@@ -80,9 +80,3 @@ val MatrixDarkScheme = darkColorScheme(
     surfaceContainerHigh = surfaceContainerHighDark,
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
-
-val MatrixGradientColors = GradientColors(
-    backgroundGradientLight = backgroundGradientLight,
-    backgroundGradientDark = backgroundGradientDark
-)
-

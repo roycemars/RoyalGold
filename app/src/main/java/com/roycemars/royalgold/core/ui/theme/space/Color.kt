@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 val primaryLight = Color(0xFF5800D8)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFF7133F4)
-val onPrimaryContainerLight = Color(0xFFE6DAFF)
+val onPrimaryContainerLight = Color(0xFFFFFFFF)
 val secondaryLight = Color(0xFF5D5F5F)
 val onSecondaryLight = Color(0xFFFFFFFF)
 val secondaryContainerLight = Color(0xFFFFFFFF)
@@ -39,8 +39,8 @@ val surfaceContainerHighestLight = Color(0xFFE7E0EF)
 
 val primaryDark = Color(0xFF9D79FF)
 val onPrimaryDark = Color(0xFFFFFFFF)
-val primaryContainerDark = Color(0xFFFF4B89)
-val onPrimaryContainerDark = Color(0xFFE6DAFF)
+val primaryContainerDark = Color(0xFF9D79FF)
+val onPrimaryContainerDark = Color(0xFFFFFFFF)
 val secondaryDark = Color(0xFFFFFFFF)
 val onSecondaryDark = Color(0xFF2F3131)
 val secondaryContainerDark = Color(0xFFE2E2E2)
@@ -72,11 +72,6 @@ val surfaceContainerLowDark = Color(0xFF1D1A24)
 val surfaceContainerDark = Color(0xFF211E29)
 val surfaceContainerHighDark = Color(0xFF2C2833)
 val surfaceContainerHighestDark = Color(0xFF37333E)
-
-// Additional colors
-
-val backgroundGradientLight = Color(0xFF9D79FF).copy(alpha = 0.7f)
-val backgroundGradientDark = Color(0xFF000000)
 
 
 

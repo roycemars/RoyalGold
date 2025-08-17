@@ -5,8 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -23,11 +21,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -39,8 +34,6 @@ import androidx.navigation.compose.rememberNavController
 import com.roycemars.royalgold.app.navigation.Screen
 import com.roycemars.royalgold.app.navigation.bottomNavItems
 import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
-import com.roycemars.royalgold.core.ui.theme.backgroundGradientDark
-import com.roycemars.royalgold.core.ui.theme.backgroundGradientLight
 import com.roycemars.royalgold.feature.budget.ui.BudgetScreen
 import com.roycemars.royalgold.feature.expenses.ui.ExpensesScreen
 import com.roycemars.royalgold.feature.market.ui.MarketScreen
@@ -57,9 +50,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val selectedIdentifier by mainViewModel.currentThemeIdentifier.collectAsState()
-            val useDynamicTheme = rememberSaveable { mutableStateOf(false) }
             RoyalGoldTheme(
-                darkTheme = isSystemInDarkTheme(),
                 selectedThemeIdentifier = selectedIdentifier) {
                 MainScreen()
             }
@@ -119,13 +110,13 @@ fun MainScreen() {
                             )
                         },
                         label = { Text(screen.title) },
-                        alwaysShowLabel = true, // As seen in your screenshot
+                        alwaysShowLabel = true,
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = MaterialTheme.colorScheme.primary,
                             selectedTextColor = MaterialTheme.colorScheme.primary,
                             unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                             unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            indicatorColor = Color.Companion.Transparent // Or your choice for indicator
+                            indicatorColor = Color.Companion.Transparent
                         )
                     )
                 }

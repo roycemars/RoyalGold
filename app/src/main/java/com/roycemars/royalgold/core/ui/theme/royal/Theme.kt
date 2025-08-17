@@ -1,9 +1,8 @@
-package com.roycemars.royalgold.core.ui.theme.space
+package com.roycemars.royalgold.core.ui.theme.royal
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import com.roycemars.royalgold.core.ui.theme.core.GradientColors
 
-val SpaceLightScheme = lightColorScheme(
+val RoyalLightScheme = lightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
     primaryContainer = primaryContainerLight,
@@ -41,7 +40,7 @@ val SpaceLightScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLight,
 )
 
-val SpaceDarkScheme = darkColorScheme(
+val RoyalDarkScheme = darkColorScheme(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
     primaryContainer = primaryContainerDark,
@@ -78,3 +77,4 @@ val SpaceDarkScheme = darkColorScheme(
     surfaceContainerHigh = surfaceContainerHighDark,
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
+

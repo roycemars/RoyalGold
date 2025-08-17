@@ -20,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.roycemars.royalgold.core.ui.MainViewModel
 import com.roycemars.royalgold.core.ui.composables.BoxWithGradientBackground
-import com.roycemars.royalgold.core.ui.theme.onPrimaryContainerDark
-import com.roycemars.royalgold.core.ui.theme.primaryContainerDark
-import com.roycemars.royalgold.core.ui.theme.primaryLight
+//import com.roycemars.royalgold.core.ui.theme.onPrimaryContainerDark
+//import com.roycemars.royalgold.core.ui.theme.primaryContainerDark
+//import com.roycemars.royalgold.core.ui.theme.primaryLight
 
 /**
  * TODO: Implement list of expenses backed with database and camerax scanner for receipts

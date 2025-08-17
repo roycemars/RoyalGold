@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.roycemars.royalgold.core.ui.theme.RoyalGoldTheme
-import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
-import com.roycemars.royalgold.core.ui.theme.primaryDark
-import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
+//import com.roycemars.royalgold.core.ui.theme.onTertiaryContainerDark
+//import com.roycemars.royalgold.core.ui.theme.primaryDark
+//import com.roycemars.royalgold.core.ui.theme.tertiaryContainerDark
 
 // Define your colors (extract these from the screenshot or your theme)
 val OrangeSegment = Color(0xFFFFA726) // Approximate

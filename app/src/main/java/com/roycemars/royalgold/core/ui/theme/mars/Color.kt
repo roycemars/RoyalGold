@@ -1,77 +1,37 @@
 package com.roycemars.royalgold.core.ui.theme.mars
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFFFF7300)
-val onPrimaryLight = Color(0xFFFFFFFF)
-val primaryContainerLight = Color( 0xFFFFA912)
-val onPrimaryContainerLight = Color(0xFF5A2400)
-val secondaryLight = Color(0xFF5D5F5F)
-val onSecondaryLight = Color(0xFFFFFFFF)
-val secondaryContainerLight = Color(0xFFFFFFFF)
-val onSecondaryContainerLight = Color(0xFF747676)
-val tertiaryLight = Color(0xFF000000)
-val onTertiaryLight = Color(0xFFFFFFFF)
-val tertiaryContainerLight = Color(0xFF1B1B1B)
-val onTertiaryContainerLight = Color(0xFF848484)
-val errorLight = Color(0xFFB60055)
-val onErrorLight = Color(0xFFFFFFFF)
-val errorContainerLight = Color(0xFFE4006C)
-val onErrorContainerLight = Color(0xFFFFFBFF)
-val backgroundLight = Color(0xFFFFF8F6)
-val onBackgroundLight = Color(0xFF261912)
-val surfaceLight = Color(0xFFFFF8F6)
-val onSurfaceLight = Color(0xFF261912)
-val surfaceVariantLight = Color(0xFFFEDBCB)
-val onSurfaceVariantLight = Color(0xFF594236)
-val outlineLight = Color(0xFF8D7164)
-val outlineVariantLight = Color(0xFFE1C0B0)
-val scrimLight = Color(0xFF000000)
-val inverseSurfaceLight = Color(0xFF3C2D26)
-val inverseOnSurfaceLight = Color(0xFFFFEDE6)
-val inversePrimaryLight = Color(0xFFFFB68F)
-val surfaceDimLight = Color(0xFFEED5CA)
-val surfaceBrightLight = Color(0xFFFFF8F6)
-val surfaceContainerLowestLight = Color(0xFFFFFFFF)
-val surfaceContainerLowLight = Color(0xFFFFF1EB)
-val surfaceContainerLight = Color(0xFFFFEAE0)
-val surfaceContainerHighLight = Color(0xFFFCE3D8)
-val surfaceContainerHighestLight = Color(0xFFF7DDD2)
+// Key Colors
+val MarsRed = Color(0xFFFF0030)
+val PureWhite = Color(0xFFFFFFFF)
+val PureBlack = Color(0xFF000000)
 
-val primaryDark = Color(0xFFFF7300)
-val onPrimaryDark = Color(0xFF542100)
-val primaryContainerDark = Color(0xFFFFA912)
-val onPrimaryContainerDark = Color(0xFF5A2400)
-val secondaryDark = Color(0xFFFFFFFF)
-val onSecondaryDark = Color(0xFF2F3131)
-val secondaryContainerDark = Color(0xFFE2E2E2)
-val onSecondaryContainerDark = Color(0xFF636565)
-val tertiaryDark = Color(0xFFC6C6C6)
-val onTertiaryDark = Color(0xFF303030)
-val tertiaryContainerDark = Color(0xFF000000)
-val onTertiaryContainerDark = Color(0xFF757575)
-val errorDark = Color(0xFFFFB1C3)
-val onErrorDark = Color(0xFF66002C)
-val errorContainerDark = Color(0xFFFF4B89)
-val onErrorContainerDark = Color(0xFF41001A)
-val backgroundDark = Color(0xFF16101e)
-val onBackgroundDark = Color(0xFFFFFFFF)
-val surfaceDark = Color(0xFF15121C)
-val onSurfaceDark = Color(0xFFFFA912)
-val surfaceVariantDark = Color(0xFF16101e)
-val onSurfaceVariantDark = Color(0xFFC881E5)
-val outlineDark = Color(0xFF9F8B97)
-val outlineVariantDark = Color(0xFF52424C)
-val scrimDark = Color(0xFF000000)
-val inverseSurfaceDark = Color(0xFFE6E1E3)
-val inverseOnSurfaceDark = Color(0xFF313031)
-val inversePrimaryDark = Color(0xFF835400)
-val surfaceDimDark = Color(0xFF141314)
-val surfaceBrightDark = Color(0xFF3A393A)
-val surfaceContainerLowestDark = Color(0xFF0F0E0F)
-val surfaceContainerLowDark = Color(0xFF1D1A24)
-val surfaceContainerDark = Color(0xFF1D1A24)
-val surfaceContainerHighDark = Color(0xFF2B292B)
-val surfaceContainerHighestDark = Color(0xFF403C48)
+// Grey Shades
+val Silver = Color(0xFFEEEEEE)
+val LightGray = Color(0xFFCCCCCC)
+val Gray = Color(0xFFAAAAAA)
+val DarkGray = Color(0xFF555555)
+val NearBlack = Color(0xFF1C1B1F) // A common dark surface color for Material 3 dark themes
+val SlightlyOffBlack = Color(0xFF222222) // Alternative for top bar or surfaces in dark mode
+val SlightlyLighterDarkGray = Color(0xFF3A3A3A) // For subtle variations in dark mode
+
+// Semantic Colors (will be used in the ColorScheme)
+
+// Light Theme Specific
+val LightTopBarBackground = PureBlack
+val LightTopBarContent = PureWhite
+val LightBottomBarBackground = PureBlack
+val LightBottomBarSelectedIcon = MarsRed
+val LightBottomBarUnselectedIcon = Gray
+
+// Dark Theme Specific
+val DarkTopBarBackground = SlightlyOffBlack // Or DarkGray if you prefer a lighter dark
+val DarkTopBarContent = PureWhite
+val DarkBottomBarBackground = SlightlyOffBlack // Consistent with top bar
+val DarkBottomBarSelectedIcon = MarsRed
+val DarkBottomBarUnselectedIcon = Gray
+val DarkSurface = NearBlack // Material 3 recommended dark surface
+val DarkBackground = PureBlack
 
 
 
